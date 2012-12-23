@@ -1,0 +1,1 @@
+../../Three20Lite/src/UI/TTTableViewPlainVarHeightDelegate.h

@@ -1,0 +1,7 @@
+HEADER_SEARCH_PATHS = ${PODS_HEADERS_SEARCH_PATHS}
+PODS_HEADERS_SEARCH_PATHS = ${PODS_PUBLIC_HEADERS_SEARCH_PATHS}
+PODS_BUILD_HEADERS_SEARCH_PATHS = "${PODS_ROOT}/BuildHeaders" "${PODS_ROOT}/BuildHeaders/FileMD5Hash" "${PODS_ROOT}/BuildHeaders/ISO8601DateFormatter" "${PODS_ROOT}/BuildHeaders/JSONKit" "${PODS_ROOT}/BuildHeaders/LibComponentLogging-Core" "${PODS_ROOT}/BuildHeaders/LibComponentLogging-NSLog" "${PODS_ROOT}/BuildHeaders/NSData+Base64" "${PODS_ROOT}/BuildHeaders/Nimbus" "${PODS_ROOT}/BuildHeaders/RestKit" "${PODS_ROOT}/BuildHeaders/SBJson" "${PODS_ROOT}/BuildHeaders/SOCKit" "${PODS_ROOT}/BuildHeaders/Three20Lite" "${PODS_ROOT}/BuildHeaders/cocoa-oauth"
+PODS_ROOT = ${SRCROOT}/Pods
+ALWAYS_SEARCH_USER_PATHS = YES
+PODS_PUBLIC_HEADERS_SEARCH_PATHS = "${PODS_ROOT}/Headers" "${PODS_ROOT}/Headers/FileMD5Hash" "${PODS_ROOT}/Headers/ISO8601DateFormatter" "${PODS_ROOT}/Headers/JSONKit" "${PODS_ROOT}/Headers/LibComponentLogging-Core" "${PODS_ROOT}/Headers/LibComponentLogging-NSLog" "${PODS_ROOT}/Headers/NSData+Base64" "${PODS_ROOT}/Headers/Nimbus" "${PODS_ROOT}/Headers/RestKit" "${PODS_ROOT}/Headers/SBJson" "${PODS_ROOT}/Headers/SOCKit" "${PODS_ROOT}/Headers/Three20Lite" "${PODS_ROOT}/Headers/cocoa-oauth"
+OTHER_LDFLAGS = -ObjC -framework CFNetwork -framework CoreData -framework CoreGraphics -framework CoreText -framework MobileCoreServices -framework QuartzCore -framework Security -framework SystemConfiguration
