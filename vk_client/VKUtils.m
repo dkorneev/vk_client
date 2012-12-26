@@ -17,10 +17,14 @@ UIColor * UIColorMakeRGB(CGFloat red, CGFloat green, CGFloat blue) {
     UILabel *titleView = [[UILabel alloc] init];
     titleView.backgroundColor = [UIColor clearColor];
     titleView.textColor = [UIColor whiteColor];
-    titleView.font = [UIFont fontWithName:@"HelveticaNeueCyr-Medium" size:19];
+    titleView.font = [UIFont fontWithName:@"HelveticaNeueCyr-Bold" size:19];
     titleView.text = text;
     [titleView sizeToFit];
     return titleView;
+}
+
++ (void)configNavigationBar:(UINavigationBar *)navBar {
+    [navBar setBackgroundImage:[UIImage imageNamed:@"Header.png"] forBarMetrics:UIBarMetricsDefault];
 }
 
 @end

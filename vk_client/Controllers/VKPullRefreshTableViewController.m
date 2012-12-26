@@ -9,6 +9,9 @@
 
 
 @implementation VKPullRefreshTableViewController
+@synthesize reloading = _reloading;
+@synthesize refreshHeaderView = _refreshHeaderView;
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];

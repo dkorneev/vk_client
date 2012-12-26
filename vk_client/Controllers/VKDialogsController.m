@@ -12,6 +12,8 @@
 #import "VKFriendInfo.h"
 #import "VKDialogInfo.h"
 #import "VKUsersService.h"
+#import "VKConversationController.h"
+#import "VKUtils.h"
 
 
 @interface VKDialogsController ()
@@ -19,8 +21,6 @@
 @property(nonatomic, strong) NSArray *dialogsArray;
 @property(nonatomic, strong) NSDictionary *users;
 @property(nonatomic, strong) VKUsersService *usersService;
-
-
 @end
 
 @implementation VKDialogsController
@@ -28,25 +28,24 @@
 - (id)init {
     self = [super init];
     if (self) {
+        self.navigationItem.titleView = [VKUtils createNavigationItemTitle:@"Диалоги"];
         [self refreshData];
     }
     return self;
 }
 
 - (void)refreshData {
-    // TODO: проверить что память освобождается корректно,
-    // из-за использования не weakSelf, а обращения к полю напрямую
     __weak VKDialogsController *weakSelf = self;
     self.service = [[VKDialogsService alloc] initWithCompletionBlock:^(NSArray *array) {
-        _dialogsArray = array;
-        _usersService = [[VKUsersService alloc] initWithCompletionBlock:^(NSDictionary *users) {
-            _users = users;
-            _reloading = NO;
-            [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:weakSelf.tableView];
+        weakSelf.dialogsArray = array;
+        weakSelf.usersService = [[VKUsersService alloc] initWithCompletionBlock:^(NSDictionary *users) {
+            weakSelf.users = users;
+            weakSelf.reloading = NO;
+            [weakSelf.refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:weakSelf.tableView];
             [weakSelf.tableView reloadData];
         }];
 
-        [_usersService getUsersInfo:[weakSelf friendsIdsString: _dialogsArray]];
+        [weakSelf.usersService getUsersInfo:[weakSelf friendsIdsString:weakSelf.dialogsArray]];
     }];
 
     _reloading = YES;
@@ -54,7 +53,7 @@
 }
 
 // достает id собеседников
-- (NSString *)friendsIdsString: (NSArray *)dialogsArray {
+- (NSString *)friendsIdsString:(NSArray *)dialogsArray {
     if (!dialogsArray || !dialogsArray.count)
         return @"";
 
@@ -73,7 +72,7 @@
 #pragma mark -
 #pragma mark EGORefreshTableHeaderDelegate Methods
 
-- (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view {
+- (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView *)view {
     [self refreshData];
 }
 
@@ -81,26 +80,28 @@
 #pragma mark UITableViewDelegate, UITableViewDataSource
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row > _dialogsArray.count - 1) {
-        return [[UITableViewCell alloc] init];
+    VKDialogsListCell *cell = [tableView dequeueReusableCellWithIdentifier:[VKDialogsListCell cellIdentifier]];
+    if (!cell)
+        cell = [[VKDialogsListCell alloc] init];
+    VKDialogInfo *dialogInfo = [_dialogsArray objectAtIndex:(NSUInteger) indexPath.row];
+    if (dialogInfo.adminId) { // групповая беседа
+        VKFriendInfo *userInfo = [_users valueForKey:dialogInfo.adminId.stringValue];
+        [cell fillByDialogsInfo:dialogInfo userInfo:userInfo];
 
     } else {
-        VKDialogsListCell *cell = [tableView dequeueReusableCellWithIdentifier:[VKDialogsListCell cellIdentifier]];
-        if (!cell)
-            cell = [[VKDialogsListCell alloc] init];
-        VKDialogInfo *dialogInfo = [_dialogsArray objectAtIndex:(NSUInteger)indexPath.row];
-        if (dialogInfo.adminId) // групповая беседа
-        {
-            VKFriendInfo *userInfo = [_users valueForKey:dialogInfo.adminId.stringValue];
-            [cell fillByDialogsInfo:dialogInfo userInfo:userInfo];
-        }
-        else
-            [cell fillByDialogsInfo:dialogInfo userInfo:[_users valueForKey:dialogInfo.userId.stringValue]];
-        return cell;
+        [cell fillByDialogsInfo:dialogInfo userInfo:[_users valueForKey:dialogInfo.userId.stringValue]];
     }
+    return cell;
 }
 
-// количество ячеек в секции
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    VKDialogInfo *dialogInfo = [_dialogsArray objectAtIndex:(NSUInteger) indexPath.row];
+    VKFriendInfo *friendInfo = [self.users valueForKey:dialogInfo.userId.stringValue];
+    VKConversationController *conversation = [[VKConversationController alloc] init:friendInfo];
+    conversation.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:conversation animated:YES];
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.dialogsArray.count;
 }

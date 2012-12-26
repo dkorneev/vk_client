@@ -14,4 +14,7 @@ UIColor *UIColorMakeRGB(CGFloat red, CGFloat green, CGFloat blue);
 
 + (UILabel *)createNavigationItemTitle: (NSString *)text;
 
++ (void)configNavigationBar:(UINavigationBar *)navBar;
+
+
 @end

@@ -8,6 +8,7 @@
 #import "VKFriendsController.h"
 #import "VKDialogsController.h"
 #import "VKSettingsController.h"
+#import "VKUtils.h"
 
 @interface VKWebViewController ()
 @property(nonatomic, strong) UIWebView *webView;
@@ -51,28 +52,31 @@
 }
 
 - (void)showTabBar {
+    // Контакты
     UINavigationController *friendsNav = [[UINavigationController alloc] init];
-    [friendsNav.navigationBar setBackgroundImage:[UIImage imageNamed:@"Header.png"] forBarMetrics:UIBarMetricsDefault];
+    [VKUtils configNavigationBar:friendsNav.navigationBar];
     [friendsNav pushViewController:[[VKFriendsController alloc] init] animated:NO];
     friendsNav.tabBarItem =
             [[UITabBarItem alloc] initWithTitle:@"Контакты" image:[UIImage imageNamed:@"tabbar-contacts-icon.png"] tag:0];
 
+    // Диалоги
     UINavigationController *dialogsNav = [[UINavigationController alloc] init];
-    [dialogsNav.navigationBar setBackgroundImage:[UIImage imageNamed:@"Header.png"] forBarMetrics:UIBarMetricsDefault];
+    [VKUtils configNavigationBar:dialogsNav.navigationBar];
     [dialogsNav pushViewController:[[VKDialogsController alloc] init] animated:NO];
     dialogsNav.tabBarItem =
-            [[UITabBarItem alloc] initWithTitle:@"Сообщение" image:[UIImage imageNamed:@"tabbar-messages-icon.png"] tag:1];
+            [[UITabBarItem alloc] initWithTitle:@"Диалоги" image:[UIImage imageNamed:@"tabbar-messages-icon.png"] tag:1];
 
-    VKSettingsController *settingsController = [[VKSettingsController alloc] init];
-    settingsController.tabBarItem =
+    // Профиль
+    UINavigationController *settingsNav = [[UINavigationController alloc] init];
+    [VKUtils configNavigationBar:settingsNav.navigationBar];
+    [settingsNav pushViewController:[[VKSettingsController alloc] init] animated:YES];
+    settingsNav.tabBarItem =
             [[UITabBarItem alloc] initWithTitle:@"Профиль" image:[UIImage imageNamed:@"tabbar-settings-icon.png"] tag:2];
 
     // показываем слудеющий экран
     UITabBarController *mainTabBar = [[UITabBarController alloc] init];
     [mainTabBar setViewControllers:@[
-            friendsNav,
-            dialogsNav,
-            settingsController]];
+            friendsNav, dialogsNav, settingsNav]];
     [self.navigationController pushViewController:mainTabBar animated:YES];
 }
 

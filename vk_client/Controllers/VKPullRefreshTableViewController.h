@@ -18,6 +18,9 @@
     BOOL _reloading;
 }
 
+@property(nonatomic) BOOL reloading;
+@property(nonatomic, strong) EGORefreshTableHeaderView *refreshHeaderView;
+
 - (void)reloadTableViewDataSource;
 - (void)doneLoadingTableViewData;
 

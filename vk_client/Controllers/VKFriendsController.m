@@ -9,6 +9,7 @@
 #import "VKFriendsService.h"
 #import "VKFriendInfo.h"
 #import "VKFriendsListCell.h"
+#import "VKUtils.h"
 
 
 @interface VKFriendsController ()
@@ -29,6 +30,7 @@
         self.friends = @[];
         self.orderedKeys = @[];
         self.friendsMap = [[NSDictionary alloc] init];
+        self.navigationItem.titleView = [VKUtils createNavigationItemTitle:@"Друзья"];
         [self performSelector:@selector(refreshData) withObject:nil afterDelay:0.5];
     }
     return self;
