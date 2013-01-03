@@ -23,6 +23,8 @@ UIColor * UIColorMakeRGB(CGFloat red, CGFloat green, CGFloat blue) {
     return titleView;
 }
 
+
+
 + (void)configNavigationBar:(UINavigationBar *)navBar {
     [navBar setBackgroundImage:[UIImage imageNamed:@"Header.png"] forBarMetrics:UIBarMetricsDefault];
 }

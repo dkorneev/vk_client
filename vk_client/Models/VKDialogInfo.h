@@ -23,4 +23,13 @@
 @property (nonatomic, strong) NSString *usersCount; //  количество участнико
 @property (nonatomic, strong) NSNumber *adminId; // id создателя беседы
 
+// массив вложений
+@property (nonatomic, strong) NSArray *attachments;
+
+
++ (VKDialogInfo *)createFromDictionary:(NSDictionary *)arg;
+
+- (BOOL)isGroupDialog;
+- (BOOL)hasMediaAttachment;
+
 @end

@@ -13,7 +13,6 @@
 
 @interface VKDialogsService ()
 @property(nonatomic, copy) void (^completionBlock)(NSArray *);
-
 @end
 
 @implementation VKDialogsService
@@ -28,13 +27,13 @@
 
 - (void)getDialogs {
     NSString *tokenParam = [[NSUserDefaults standardUserDefaults] valueForKey:@"access_token"];
-    NSString *path = [@"/messages.getDialogs?count=100&access_token=" stringByAppendingString:tokenParam];
+    NSString *path = [@"/messages.getDialogs?count=200&access_token=" stringByAppendingString:tokenParam];
     [[RKClient sharedClient] get:path delegate:self];
 }
 
 - (void)getDialogHistory:(NSString *)userId {
     NSString *tokenParam = [[NSUserDefaults standardUserDefaults] valueForKey:@"access_token"];
-    NSString *path = [NSString stringWithFormat:@"/messages.getHistory?uid=%@&count=20&access_token=%@",
+    NSString *path = [NSString stringWithFormat:@"/messages.getHistory?uid=%@&count=200&access_token=%@",
                     userId, tokenParam];
     [[RKClient sharedClient] get:path delegate:self];
 }
@@ -47,24 +46,9 @@
     NSArray *array = [[newStr JSONValue] valueForKey:@"response"];
     for (NSUInteger i = 1; i < array.count; ++i) {
         NSDictionary *currentValue = [array objectAtIndex:i];
-        VKDialogInfo *curDialog = [[VKDialogInfo alloc] init];
-
-        curDialog.deleted = [currentValue valueForKey:@"deleted"];
-        if (curDialog.deleted)
-            continue;
-
-        curDialog.body = [currentValue valueForKey:@"body"];
-        curDialog.title = [currentValue valueForKey:@"title"];
-        curDialog.userId = [currentValue valueForKey:@"uid"];
-        curDialog.date = [currentValue valueForKey:@"date"];
-        curDialog.readState = [currentValue valueForKey:@"read_state"];
-
-        curDialog.chatId = [currentValue valueForKey:@"chat_id"];
-        curDialog.chatActive = [currentValue valueForKey:@"chat_active"];
-        curDialog.usersCount = [currentValue valueForKey:@"users_count"];
-        curDialog.adminId = [currentValue valueForKey:@"admin_id"];
-
-        [dialogsArray addObject:curDialog];
+        VKDialogInfo *curDialog = [VKDialogInfo createFromDictionary:currentValue];
+        if (curDialog)
+            [dialogsArray addObject:curDialog];
     }
 
     if (_completionBlock)

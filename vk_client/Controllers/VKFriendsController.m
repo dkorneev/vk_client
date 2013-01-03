@@ -15,10 +15,8 @@
 @interface VKFriendsController ()
 @property(nonatomic, strong) VKFriendsService *service;
 @property(nonatomic, strong) NSArray *friends;
-
 @property(nonatomic, strong) NSArray *orderedKeys;
 @property(nonatomic, strong) NSDictionary *friendsMap;
-
 @property(nonatomic, strong) UITableView *tableView;
 @end
 

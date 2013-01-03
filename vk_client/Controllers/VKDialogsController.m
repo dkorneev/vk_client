@@ -29,15 +29,35 @@
     self = [super init];
     if (self) {
         self.navigationItem.titleView = [VKUtils createNavigationItemTitle:@"Диалоги"];
+
+        UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"Назад"
+                                                                 style:UIBarButtonItemStyleBordered
+                                                                target:self
+                                                                action:@selector(back)];
+        self.navigationItem.backBarButtonItem = item;
         [self refreshData];
     }
     return self;
 }
 
+- (void)back {
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
 - (void)refreshData {
     __weak VKDialogsController *weakSelf = self;
     self.service = [[VKDialogsService alloc] initWithCompletionBlock:^(NSArray *array) {
-        weakSelf.dialogsArray = array;
+
+        // групповые диалоги пока не поддерживаются, поэтому их исключаем
+        NSMutableArray *notGroupDialogs = [NSMutableArray new];
+        for (VKDialogInfo *curInfo in array) {
+            if (![curInfo isGroupDialog])
+                [notGroupDialogs addObject:curInfo];
+        }
+
+        NSLog(@"all dialogs count: %d; simple dialogs count: %d", array.count, notGroupDialogs.count);
+
+        weakSelf.dialogsArray = notGroupDialogs;
         weakSelf.usersService = [[VKUsersService alloc] initWithCompletionBlock:^(NSDictionary *users) {
             weakSelf.users = users;
             weakSelf.reloading = NO;
@@ -45,6 +65,9 @@
             [weakSelf.tableView reloadData];
         }];
 
+        // для того чтобы отображать инфу о пользователях
+        // которые не являются друзьями но учавствовали в диалоге
+        // извлекаем их id из диалогов и запрашиваем инфу о них
         [weakSelf.usersService getUsersInfo:[weakSelf friendsIdsString:weakSelf.dialogsArray]];
     }];
 
@@ -52,7 +75,7 @@
     [self.service getDialogs];
 }
 
-// достает id собеседников
+// достает id собеседников из массива дилогов
 - (NSString *)friendsIdsString:(NSArray *)dialogsArray {
     if (!dialogsArray || !dialogsArray.count)
         return @"";
