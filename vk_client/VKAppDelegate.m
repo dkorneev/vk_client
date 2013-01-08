@@ -18,6 +18,8 @@
     [RKObjectManager managerWithBaseURLString:@"https://api.vk.com/method"];
     [RKObjectManager sharedManager].requestQueue.showsNetworkActivityIndicatorWhenBusy = YES;
     RKParserRegistry *registry = [RKParserRegistry sharedRegistry];
+
+    [[RKParserRegistry sharedRegistry] setParserClass:[RKJSONParserJSONKit class] forMIMEType:@"text/javascript"];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions

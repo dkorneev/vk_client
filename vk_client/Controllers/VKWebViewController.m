@@ -9,9 +9,14 @@
 #import "VKDialogsController.h"
 #import "VKSettingsController.h"
 #import "VKUtils.h"
+#import "VKLongPollInfoService.h"
+#import "VKLongPollInfo.h"
+#import "VKLongPollService.h"
 
 @interface VKWebViewController ()
 @property(nonatomic, strong) UIWebView *webView;
+@property(nonatomic, strong) VKLongPollInfoService *longPollInfoService;
+@property(nonatomic, strong) VKLongPollService *longPollService;
 
 @end
 
@@ -45,7 +50,19 @@
             NSLog(@"ACCESS_TOKEN: %@", [[NSUserDefaults standardUserDefaults] valueForKey:@"access_token"]);
             NSLog(@"USER_ID: %@", [[NSUserDefaults standardUserDefaults] valueForKey:@"user_id"]);
 
-            [self showTabBar];
+            // получаем настройки longPoll сервера и запускаем данный механизм
+            __weak VKWebViewController *weakSelf = self;
+            self.longPollInfoService = [[VKLongPollInfoService alloc] initWithCompletionBlock:^(NSObject *object) {
+                VKLongPollInfo *info = (VKLongPollInfo *)object;
+                weakSelf.longPollService = [[VKLongPollService alloc] initWithKey:info.key
+                                                                           server:info.server
+                                                                               ts:info.ts
+                                                                  completionBlock:^(NSObject *object1){}];
+                [weakSelf.longPollService start];
+            }];
+            [self.longPollInfoService getLongPoolServerSettings];
+
+            [self showTabBar];                                                                     
         }
     }
     return ([request.URL.host isEqualToString:@"oauth.vk.com"] || [request.URL.host isEqualToString:@"login.vk.com"]);

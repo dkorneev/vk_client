@@ -7,12 +7,14 @@
 
 #import <Foundation/Foundation.h>
 #import "UIBubbleTableViewDataSource.h"
+#import "UIInputToolbar.h"
 
 @class VKFriendInfo;
 @class VKDialogsService;
+@class UIInputToolbar;
 
 
-@interface VKConversationController : UIViewController <UIBubbleTableViewDataSource>
+@interface VKConversationController : UIViewController <UIBubbleTableViewDataSource, UIInputToolbarDelegate>
 
 - (id)init:(VKFriendInfo *)friend;
 

@@ -7,6 +7,9 @@
 
 #import <Foundation/Foundation.h>
 
+@class VKLongPollInfoService;
+@class VKLongPollService;
+
 
 @interface VKWebViewController : UIViewController <UIWebViewDelegate>
 @end

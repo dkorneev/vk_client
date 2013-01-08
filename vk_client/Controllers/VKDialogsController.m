@@ -55,8 +55,6 @@
                 [notGroupDialogs addObject:curInfo];
         }
 
-        NSLog(@"all dialogs count: %d; simple dialogs count: %d", array.count, notGroupDialogs.count);
-
         weakSelf.dialogsArray = notGroupDialogs;
         weakSelf.usersService = [[VKUsersService alloc] initWithCompletionBlock:^(NSDictionary *users) {
             weakSelf.users = users;
