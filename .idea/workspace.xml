@@ -1,36 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="63e39499-dca2-4763-977b-2f3db386b491" name="Default" comment="attachments mapping (audio, video, doc); &#10;images representation in conversations">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vk_client/Images/tabbar_images/buttonbg.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vk_client/Images/tabbar_images/buttonbg@2x.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vk_client/Images/tabbar_images/textbg.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vk_client/Images/tabbar_images/textbg@2x.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vk_client/Images/tabbar_images/toolbarbg.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vk_client/Images/tabbar_images/toolbarbg@2x.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vk_client/Models/VKLongPollInfo.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vk_client/Models/VKLongPollInfo.m" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vk_client/Models/VKLongPollResponse.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vk_client/Models/VKLongPollResponse.m" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vk_client/Services/VKLongPollInfoService.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vk_client/Services/VKLongPollInfoService.m" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vk_client/Services/VKLongPollService.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vk_client/Services/VKLongPollService.m" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vk_client/Views/input_toolbar/UIExpandingTextView.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vk_client/Views/input_toolbar/UIExpandingTextView.m" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vk_client/Views/input_toolbar/UIExpandingTextViewInternal.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vk_client/Views/input_toolbar/UIExpandingTextViewInternal.m" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vk_client/Views/input_toolbar/UIInputToolbar.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vk_client/Views/input_toolbar/UIInputToolbar.m" />
+    <list default="true" id="63e39499-dca2-4763-977b-2f3db386b491" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vk_client/Images/devider@2x.png" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vk_client/Images/SendButton.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vk_client/Images/SendButton@2x.png" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vk_client.xcworkspace/xcuserdata/admin.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/vk_client.xcworkspace/xcuserdata/admin.xcuserdatad/UserInterfaceState.xcuserstate" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vk_client/Images/tabbar_images/buttonbg.png" afterPath="$PROJECT_DIR$/vk_client/Images/tabbar_images/buttonbg.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vk_client/Images/tabbar_images/buttonbg@2x.png" afterPath="$PROJECT_DIR$/vk_client/Images/tabbar_images/buttonbg@2x.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vk_client.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/vk_client.xcodeproj/project.pbxproj" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vk_client.xcworkspace/xcuserdata/admin.xcuserdatad/xcdebugger/Breakpoints.xcbkptlist" afterPath="$PROJECT_DIR$/vk_client.xcworkspace/xcuserdata/admin.xcuserdatad/xcdebugger/Breakpoints.xcbkptlist" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vk_client/Controllers/VKConversationController.h" afterPath="$PROJECT_DIR$/vk_client/Controllers/VKConversationController.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vk_client/Controllers/VKConversationController.m" afterPath="$PROJECT_DIR$/vk_client/Controllers/VKConversationController.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vk_client/Controllers/VKDialogsController.h" afterPath="$PROJECT_DIR$/vk_client/Controllers/VKDialogsController.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vk_client/Controllers/VKDialogsController.m" afterPath="$PROJECT_DIR$/vk_client/Controllers/VKDialogsController.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vk_client/Controllers/VKFriendsController.h" afterPath="$PROJECT_DIR$/vk_client/Controllers/VKFriendsController.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vk_client/Controllers/VKFriendsController.m" afterPath="$PROJECT_DIR$/vk_client/Controllers/VKFriendsController.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vk_client/Controllers/VKLoginController.h" afterPath="$PROJECT_DIR$/vk_client/Controllers/VKLoginController.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vk_client/Controllers/VKLoginController.m" afterPath="$PROJECT_DIR$/vk_client/Controllers/VKLoginController.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vk_client/Controllers/VKPullRefreshTableViewController.h" afterPath="$PROJECT_DIR$/vk_client/Controllers/VKPullRefreshTableViewController.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vk_client/Controllers/VKPullRefreshTableViewController.m" afterPath="$PROJECT_DIR$/vk_client/Controllers/VKPullRefreshTableViewController.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vk_client/Controllers/VKSettingsController.h" afterPath="$PROJECT_DIR$/vk_client/Controllers/VKSettingsController.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vk_client/Controllers/VKSettingsController.m" afterPath="$PROJECT_DIR$/vk_client/Controllers/VKSettingsController.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vk_client/Controllers/VKWebViewController.h" afterPath="$PROJECT_DIR$/vk_client/Controllers/VKWebViewController.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vk_client/Controllers/VKWebViewController.m" afterPath="$PROJECT_DIR$/vk_client/Controllers/VKWebViewController.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vk_client/Models/VKDialogInfo.h" afterPath="$PROJECT_DIR$/vk_client/Models/VKDialogInfo.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vk_client/Models/VKDialogInfo.m" afterPath="$PROJECT_DIR$/vk_client/Models/VKDialogInfo.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vk_client/Models/VKFriendInfo.h" afterPath="$PROJECT_DIR$/vk_client/Models/VKFriendInfo.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vk_client/Models/VKFriendInfo.m" afterPath="$PROJECT_DIR$/vk_client/Models/VKFriendInfo.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vk_client/Models/VKLongPollInfo.h" afterPath="$PROJECT_DIR$/vk_client/Models/VKLongPollInfo.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vk_client/Models/VKLongPollInfo.m" afterPath="$PROJECT_DIR$/vk_client/Models/VKLongPollInfo.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vk_client/Models/VKLongPollResponse.h" afterPath="$PROJECT_DIR$/vk_client/Models/VKLongPollResponse.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vk_client/Models/VKLongPollResponse.m" afterPath="$PROJECT_DIR$/vk_client/Models/VKLongPollResponse.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vk_client/Models/attachments/VKAudioAttachment.h" afterPath="$PROJECT_DIR$/vk_client/Models/attachments/VKAudioAttachment.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vk_client/Models/attachments/VKAudioAttachment.m" afterPath="$PROJECT_DIR$/vk_client/Models/attachments/VKAudioAttachment.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vk_client/Models/attachments/VKDocumentAttachment.h" afterPath="$PROJECT_DIR$/vk_client/Models/attachments/VKDocumentAttachment.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vk_client/Models/attachments/VKDocumentAttachment.m" afterPath="$PROJECT_DIR$/vk_client/Models/attachments/VKDocumentAttachment.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vk_client/Models/attachments/VKPhotoAttachment.h" afterPath="$PROJECT_DIR$/vk_client/Models/attachments/VKPhotoAttachment.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vk_client/Models/attachments/VKPhotoAttachment.m" afterPath="$PROJECT_DIR$/vk_client/Models/attachments/VKPhotoAttachment.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vk_client/Services/VKDialogsService.h" afterPath="$PROJECT_DIR$/vk_client/Services/VKDialogsService.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vk_client/Services/VKDialogsService.m" afterPath="$PROJECT_DIR$/vk_client/Services/VKDialogsService.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vk_client/Services/VKFriendsService.h" afterPath="$PROJECT_DIR$/vk_client/Services/VKFriendsService.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vk_client/Services/VKFriendsService.m" afterPath="$PROJECT_DIR$/vk_client/Services/VKFriendsService.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vk_client/Services/VKLongPollInfoService.h" afterPath="$PROJECT_DIR$/vk_client/Services/VKLongPollInfoService.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vk_client/Services/VKLongPollInfoService.m" afterPath="$PROJECT_DIR$/vk_client/Services/VKLongPollInfoService.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vk_client/Services/VKLongPollService.h" afterPath="$PROJECT_DIR$/vk_client/Services/VKLongPollService.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vk_client/Services/VKLongPollService.m" afterPath="$PROJECT_DIR$/vk_client/Services/VKLongPollService.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vk_client/Services/VKUsersService.h" afterPath="$PROJECT_DIR$/vk_client/Services/VKUsersService.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vk_client/Services/VKUsersService.m" afterPath="$PROJECT_DIR$/vk_client/Services/VKUsersService.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vk_client/VKAppDelegate.h" afterPath="$PROJECT_DIR$/vk_client/VKAppDelegate.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vk_client/VKAppDelegate.m" afterPath="$PROJECT_DIR$/vk_client/VKAppDelegate.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vk_client/VKUtils.h" afterPath="$PROJECT_DIR$/vk_client/VKUtils.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vk_client/VKUtils.m" afterPath="$PROJECT_DIR$/vk_client/VKUtils.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vk_client/Views/VKLoginButton.h" afterPath="$PROJECT_DIR$/vk_client/Views/VKLoginButton.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vk_client/Views/VKLoginButton.m" afterPath="$PROJECT_DIR$/vk_client/Views/VKLoginButton.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vk_client/Views/VKRegistrationButton.h" afterPath="$PROJECT_DIR$/vk_client/Views/VKRegistrationButton.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vk_client/Views/VKRegistrationButton.m" afterPath="$PROJECT_DIR$/vk_client/Views/VKRegistrationButton.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vk_client/Views/VKTabBarItem.h" afterPath="$PROJECT_DIR$/vk_client/Views/VKTabBarItem.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vk_client/Views/VKTabBarItem.m" afterPath="$PROJECT_DIR$/vk_client/Views/VKTabBarItem.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vk_client/Views/table view cells/VKDialogsListCell.h" afterPath="$PROJECT_DIR$/vk_client/Views/table view cells/VKDialogsListCell.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vk_client/Views/table view cells/VKDialogsListCell.m" afterPath="$PROJECT_DIR$/vk_client/Views/table view cells/VKDialogsListCell.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vk_client/Views/table view cells/VKEditableCell.h" afterPath="$PROJECT_DIR$/vk_client/Views/table view cells/VKEditableCell.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vk_client/Views/table view cells/VKEditableCell.m" afterPath="$PROJECT_DIR$/vk_client/Views/table view cells/VKEditableCell.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vk_client/Views/table view cells/VKFriendsListCell.h" afterPath="$PROJECT_DIR$/vk_client/Views/table view cells/VKFriendsListCell.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vk_client/Views/table view cells/VKFriendsListCell.m" afterPath="$PROJECT_DIR$/vk_client/Views/table view cells/VKFriendsListCell.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vk_client/main.m" afterPath="$PROJECT_DIR$/vk_client/main.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vk_client/vk_client-Info.plist" afterPath="$PROJECT_DIR$/vk_client/vk_client-Info.plist" />
     </list>
     <ignored path="vk_client.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -50,46 +86,46 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="iphonesimulator_6.0_1" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="VKFriendsService.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vk_client/Services/VKFriendsService.m">
+      <file leaf-file-name="VKFriendsListCell.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vk_client/Views/table view cells/VKFriendsListCell.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="43" selection-start="1091" selection-end="1091" vertical-scroll-proportion="0.0">
+            <state line="80" column="51" selection-start="2828" selection-end="2828" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="VKLongPollInfoService.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vk_client/Services/VKLongPollInfoService.m">
+      <file leaf-file-name="VKFriendsListCell.h" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vk_client/Views/table view cells/VKFriendsListCell.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="43" column="27" selection-start="1440" selection-end="1440" vertical-scroll-proportion="0.0">
+            <state line="16" column="8" selection-start="278" selection-end="278" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="VKLongPollInfoService.h" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vk_client/Services/VKLongPollInfoService.h">
+      <file leaf-file-name="VKFriendsController.h" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vk_client/Controllers/VKFriendsController.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="0" selection-start="238" selection-end="294" vertical-scroll-proportion="0.0">
+            <state line="13" column="94" selection-start="215" selection-end="276" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="VKLongPollService.h" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vk_client/Services/VKLongPollService.h">
+      <file leaf-file-name="VKWebViewController.m" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/vk_client/Controllers/VKWebViewController.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="13" selection-start="371" selection-end="371" vertical-scroll-proportion="0.0">
+            <state line="74" column="30" selection-start="3394" selection-end="3394" vertical-scroll-proportion="0.9658703">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="VKAppDelegate.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vk_client/VKAppDelegate.m">
+      <file leaf-file-name="VKPullRefreshTableViewController.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vk_client/Controllers/VKPullRefreshTableViewController.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="69" selection-start="639" selection-end="639" vertical-scroll-proportion="0.0">
+            <state line="82" column="8" selection-start="2264" selection-end="2264" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -98,39 +134,8 @@
       <file leaf-file-name="VKFriendsController.m" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/vk_client/Controllers/VKFriendsController.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="43" column="51" selection-start="1350" selection-end="1350" vertical-scroll-proportion="0.0">
+            <state line="142" column="109" selection-start="6115" selection-end="6115" vertical-scroll-proportion="0.0">
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="VKLongPollService.m" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/vk_client/Services/VKLongPollService.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="33" column="8" selection-start="882" selection-end="882" vertical-scroll-proportion="0.35039818">
-              <folding>
-                <element signature="e#111#140#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="VKWebViewController.h" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vk_client/Controllers/VKWebViewController.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="VKWebViewController.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vk_client/Controllers/VKWebViewController.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="60" column="42" selection-start="2919" selection-end="2919" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#113#144#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -148,29 +153,29 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/vk_client/Controllers/VKDialogsController.m" />
-        <option value="$PROJECT_DIR$/vk_client/Controllers/VKConversationController.h" />
-        <option value="$PROJECT_DIR$/vk_client/Views/input_toolbar/UIInputToolbar.h" />
-        <option value="$PROJECT_DIR$/vk_client/Views/input_toolbar/UIInputToolbar.m" />
-        <option value="$PROJECT_DIR$/vk_client/Controllers/VKConversationController.m" />
-        <option value="$PROJECT_DIR$/vk_client/Models/VKLongPoolInfo.h" />
-        <option value="$PROJECT_DIR$/vk_client/Models/VKLongPoolInfo.m" />
-        <option value="$PROJECT_DIR$/vk_client/Services/VKLongPoolService.h" />
-        <option value="$PROJECT_DIR$/vk_client/Services/VKLongPoolService.m" />
-        <option value="$PROJECT_DIR$/vk_client/Services/VKLongPollInfoService.m" />
-        <option value="$PROJECT_DIR$/vk_client/Models/VKLongPollResponse.h" />
-        <option value="$PROJECT_DIR$/vk_client/Services/VKFriendsService.m" />
-        <option value="$PROJECT_DIR$/vk_client/VKAppDelegate.m" />
-        <option value="$PROJECT_DIR$/vk_client/Services/VKLongPollService.h" />
+        <option value="$PROJECT_DIR$/vk_client/Views/table view cells/VKDialogsListCell.m" />
+        <option value="$PROJECT_DIR$/vk_client/Views/VKTabBarItem.m" />
+        <option value="$PROJECT_DIR$/vk_client/Views/VKRegistrationButton.m" />
+        <option value="$PROJECT_DIR$/vk_client/Views/VKLoginButton.m" />
+        <option value="$PROJECT_DIR$/vk_client/VKUtils.m" />
+        <option value="$PROJECT_DIR$/vk_client/Views/SegmentedButton/SegmentedButton.h" />
+        <option value="$PROJECT_DIR$/vk_client/Views/SegmentedButton/SegmentedButton.m" />
+        <option value="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.0.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIControl.h" />
         <option value="$PROJECT_DIR$/vk_client/Controllers/VKWebViewController.m" />
-        <option value="$PROJECT_DIR$/vk_client/Services/VKLongPollService.m" />
+        <option value="$PROJECT_DIR$/vk_client/Controllers/VKOnlineFriendsController.h" />
+        <option value="$PROJECT_DIR$/vk_client/Controllers/VKAbstractFriendsController.h" />
+        <option value="$PROJECT_DIR$/vk_client/Controllers/VKFriendsController.h" />
+        <option value="$PROJECT_DIR$/vk_client/Controllers/VKAbstractFriendsController.m" />
+        <option value="$PROJECT_DIR$/vk_client/Views/table view cells/VKFriendsListCell.h" />
+        <option value="$PROJECT_DIR$/vk_client/Views/table view cells/VKFriendsListCell.m" />
+        <option value="$PROJECT_DIR$/vk_client/Controllers/VKFriendsController.m" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="119" />
+    <option name="x" value="89" />
     <option name="y" value="22" />
-    <option name="width" value="1727" />
+    <option name="width" value="1779" />
     <option name="height" value="974" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -287,6 +292,28 @@
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodePBXReferenceNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="table view cells" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodePBXReferenceNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vk_client" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vk_client" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodePBXReferenceNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Views" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodePBXReferenceNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="input_toolbar" />
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodePBXReferenceNode" />
             </PATH_ELEMENT>
@@ -359,8 +386,86 @@
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodePBXReferenceNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Fonts" />
+              <option name="myItemId" value="Images" />
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodePBXReferenceNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vk_client" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vk_client" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodePBXReferenceNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Images" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodePBXReferenceNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tabbar_images" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodePBXReferenceNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="toolbarbg.png" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.MergedIconsNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vk_client" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vk_client" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodePBXReferenceNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Images" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodePBXReferenceNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tabbar_images" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodePBXReferenceNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="textbg.png" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.MergedIconsNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vk_client" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vk_client" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodePBXReferenceNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Images" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodePBXReferenceNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tabbar_images" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodePBXReferenceNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="buttonbg.png" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.MergedIconsNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -428,7 +533,7 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
-    <property name="options.lastSelected" value="editor.preferences.tabs" />
+    <property name="options.lastSelected" value="fileTemplates" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="OBJC.PRESERVED_TARGET_SELECTION" value="vk_client" />
     <property name="options.searchVisible" value="true" />
@@ -500,7 +605,11 @@
       <created>1357250146508</created>
       <updated>1357250146508</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="conversations - input toolbar;&#10;long poll mechanism.">
+      <created>1357668288744</created>
+      <updated>1357668288744</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -524,16 +633,15 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="119" y="22" width="1727" height="974" extended-state="0" />
+    <frame x="89" y="22" width="1779" height="974" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21948357" sideWeight="0.67045456" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36136365" sideWeight="0.9993557" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21298406" sideWeight="0.63863635" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36136365" sideWeight="0.99256045" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.9942071" order="2" side_tool="false" content_ui="tabs" />
@@ -541,6 +649,7 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -581,7 +690,7 @@
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="attachments mapping (audio, video, doc); &#10;images representation in conversations" />
+    <option name="LAST_COMMIT_MESSAGE" value="conversations - input toolbar;&#10;long poll mechanism." />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -596,126 +705,117 @@
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
     <MESSAGE value=" conversations + some bugfixes" />
     <MESSAGE value="attachments mapping (audio, video, doc); &#10;images representation in conversations" />
+    <MESSAGE value="conversations - input toolbar;&#10;long poll mechanism." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="83" />
+      <option name="time" value="94" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/vk_client/Models/VKLongPollInfo.h">
+    <entry file="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.0.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIControl.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="48" selection-start="229" selection-end="229" vertical-scroll-proportion="0.29411766">
+        <state line="51" column="24" selection-start="2061" selection-end="2081" vertical-scroll-proportion="0.359375">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vk_client/Services/VKLongPollInfoService.h">
+    <entry file="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.0.sdk/System/Library/Frameworks/UIKit.framework/Headers/UISegmentedControl.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="0" selection-start="238" selection-end="294" vertical-scroll-proportion="0.0">
+        <state line="120" column="81" selection-start="7076" selection-end="7076" vertical-scroll-proportion="0.453125">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Pods/RestKit/Code/Support/RKMIMETypes.h">
+    <entry file="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.0.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIControl.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="23" selection-start="786" selection-end="800" vertical-scroll-proportion="0.5925297">
+        <state line="54" column="4" selection-start="2240" selection-end="2262" vertical-scroll-proportion="0.41145834">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vk_client/Services/VKFriendsService.m">
+    <entry file="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.0.sdk/System/Library/Frameworks/UIKit.framework/Headers/UITableView.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="43" selection-start="1091" selection-end="1091" vertical-scroll-proportion="0.0">
+        <state line="479" column="13" selection-start="27887" selection-end="27887" vertical-scroll-proportion="0.4630485">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Pods/RestKit/Code/ObjectMapping/RKParserRegistry.m">
+    <entry file="file://$PROJECT_DIR$/vk_client/Controllers/VKPullRefreshTableViewController.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="88" column="16" selection-start="2827" selection-end="2827" vertical-scroll-proportion="0.33333334">
+        <state line="82" column="8" selection-start="2264" selection-end="2264" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Pods/RestKit/Code/ObjectMapping/RKObjectLoader.h">
+    <entry file="file://$PROJECT_DIR$/vk_client/Controllers/VKPullRefreshTableViewController.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="60" column="86" selection-start="2143" selection-end="2229" vertical-scroll-proportion="0.19399539">
+        <state line="10" column="11" selection-start="129" selection-end="129" vertical-scroll-proportion="0.15588914">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vk_client/Services/VKFriendsService.h">
+    <entry file="file://$PROJECT_DIR$/vk_client/Views/EGORefreshTableHeaderView.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+        <state line="60" column="11" selection-start="2234" selection-end="2234" vertical-scroll-proportion="0.82935154">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Pods/RestKit/Code/ObjectMapping/RKObjectMappingProvider.h">
+    <entry file="file://$PROJECT_DIR$/vk_client/Controllers/VKFriendsController.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="4" selection-start="919" selection-end="919" vertical-scroll-proportion="0.23094426">
+        <state line="13" column="94" selection-start="215" selection-end="276" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Pods/RestKit/Code/ObjectMapping/RKObjectMappingProvider.m">
+    <entry file="file://$PROJECT_DIR$/vk_client/Views/table view cells/VKFriendsListCell.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="174" column="93" selection-start="7750" selection-end="7750" vertical-scroll-proportion="0.33256352">
+        <state line="16" column="8" selection-start="278" selection-end="278" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vk_client/Models/VKLongPollResponse.h">
+    <entry file="file://$PROJECT_DIR$/vk_client/Views/table view cells/VKFriendsListCell.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="11" selection-start="159" selection-end="159" vertical-scroll-proportion="0.26737967">
+        <state line="80" column="51" selection-start="2828" selection-end="2828" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vk_client/VKAppDelegate.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="69" selection-start="639" selection-end="639" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+    <entry file="file://$PROJECT_DIR$/vk_client/Images/tabbar_images/buttonbg@2x.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vk_client/Images/tabbar_images/buttonbg.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vk_client/Images/tabbar_images/toolbarbg.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/vk_client/Controllers/VKFriendsController.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="51" selection-start="1350" selection-end="1350" vertical-scroll-proportion="0.0">
+        <state line="142" column="109" selection-start="6115" selection-end="6115" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vk_client/VKUtils.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="8" selection-start="636" selection-end="636" vertical-scroll-proportion="0.443686">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/vk_client/Controllers/VKWebViewController.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="60" column="42" selection-start="2919" selection-end="2919" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#113#144#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vk_client/Controllers/VKWebViewController.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+        <state line="74" column="30" selection-start="3394" selection-end="3394" vertical-scroll-proportion="0.9658703">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vk_client/Services/VKLongPollService.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="13" selection-start="371" selection-end="371" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vk_client/Services/VKLongPollService.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="8" selection-start="882" selection-end="882" vertical-scroll-proportion="0.35039818">
-          <folding>
-            <element signature="e#111#140#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>

@@ -1,8 +1,7 @@
 //
-// Created by admin on 11/29/12.
+// Created by dkorneev on 11/29/12.
 //
-// To change the template use AppCode | Preferences | File Templates.
-//
+
 
 #import <QuartzCore/QuartzCore.h>
 #import "VKFriendsListCell.h"
@@ -56,7 +55,7 @@ static NSString *cellIdentifier = @"VKFriendsListCellIdentifier";
     self.onlineMark.hidden = YES;
 }
 
-- (void)fillByFriendsInfo:(VKFriendInfo *)info {
+- (void)fillByFriendsInfo:(VKFriendInfo *)info shiftMark:(BOOL)shift {
     // 1. Устанавливаем аватарку
     [self.userAvatar setPathToNetworkImage:info.photo];
 
@@ -74,6 +73,9 @@ static NSString *cellIdentifier = @"VKFriendsListCellIdentifier";
     // 3. Если пользователь в сети  - показываем метку
     if (info.online.boolValue)
         self.onlineMark.hidden = NO;
+
+    self.onlineMark.center = shift ? (struct CGPoint) {300, 24} : (struct CGPoint) {280, 24};
+
 }
 
 @end

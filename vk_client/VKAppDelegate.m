@@ -2,7 +2,7 @@
 //  VKAppDelegate.m
 //  vk_client
 //
-//  Created by admin on 10/29/12.
+//  Created by dkorneev on 10/29/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 

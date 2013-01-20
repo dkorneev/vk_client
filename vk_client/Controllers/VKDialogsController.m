@@ -1,8 +1,7 @@
 //
-// Created by admin on 11/25/12.
+// Created by dkorneev on 11/25/12.
 //
-// To change the template use AppCode | Preferences | File Templates.
-//
+
 
 
 #import "VKDialogsController.h"
@@ -14,6 +13,7 @@
 #import "VKUsersService.h"
 #import "VKConversationController.h"
 #import "VKUtils.h"
+#import "VKLongPollService.h"
 
 
 @interface VKDialogsController ()
@@ -36,8 +36,19 @@
                                                                 action:@selector(back)];
         self.navigationItem.backBarButtonItem = item;
         [self refreshData];
+
+        [[VKLongPollService getSharedInstance] addMessagesEventObserver:self];
     }
     return self;
+}
+
+- (void)handleEvent {
+    NSLog(@"VKDialogsController - handle event");
+    [self refreshData];
+}
+
+- (void)dealloc {
+    [[VKLongPollService getSharedInstance] removeMessagesEventObserver:self];
 }
 
 - (void)back {

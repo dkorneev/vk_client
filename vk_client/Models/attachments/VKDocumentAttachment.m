@@ -1,8 +1,7 @@
 //
-// Created by admin on 1/3/13.
+// Created by dkorneev on 1/3/13.
 //
-// To change the template use AppCode | Preferences | File Templates.
-//
+
 
 
 #import "VKDocumentAttachment.h"

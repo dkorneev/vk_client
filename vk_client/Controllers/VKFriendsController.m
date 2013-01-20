@@ -1,23 +1,25 @@
 //
-// Created by admin on 11/25/12.
+// Created by dkorneev on 11/25/12.
 //
-// To change the template use AppCode | Preferences | File Templates.
-//
+
 
 
 #import "VKFriendsController.h"
 #import "VKFriendsService.h"
 #import "VKFriendInfo.h"
 #import "VKFriendsListCell.h"
-#import "VKUtils.h"
+#import "UIViewAdditions.h"
 
 
 @interface VKFriendsController ()
 @property(nonatomic, strong) VKFriendsService *service;
 @property(nonatomic, strong) NSArray *friends;
+@property(nonatomic, strong) NSArray *onlineFriends;
 @property(nonatomic, strong) NSArray *orderedKeys;
 @property(nonatomic, strong) NSDictionary *friendsMap;
 @property(nonatomic, strong) UITableView *tableView;
+@property(nonatomic) BOOL onlyOnlineFriends;
+
 @end
 
 @implementation VKFriendsController
@@ -28,19 +30,52 @@
         self.friends = @[];
         self.orderedKeys = @[];
         self.friendsMap = [[NSDictionary alloc] init];
-        self.navigationItem.titleView = [VKUtils createNavigationItemTitle:@"Друзья"];
+        self.onlyOnlineFriends = NO;
+
+        UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"Все", @"Онлайн"]];
+        segmentedControl.backgroundColor = [UIColor clearColor];
+        segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
+        segmentedControl.selectedSegmentIndex = 0;
+        [segmentedControl setWidth:210];
+        [segmentedControl setBackgroundImage:[UIImage imageNamed:@"Header_Button.png"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+
+        [segmentedControl setDividerImage:[UIImage imageNamed:@"devider.png"] forLeftSegmentState:UIControlStateSelected
+                        rightSegmentState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+        [segmentedControl setDividerImage:[UIImage imageNamed:@"devider.png"] forLeftSegmentState:UIControlStateNormal
+                        rightSegmentState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
+        [segmentedControl addTarget:self action:@selector(changeList:) forControlEvents:UIControlEventValueChanged];
+        self.navigationItem.titleView = segmentedControl;
+
         [self performSelector:@selector(refreshData) withObject:nil afterDelay:0.5];
+
+        [[VKLongPollService getSharedInstance] addUserStatusEventObserver:self];
     }
     return self;
+}
+
+- (void)changeList:(UISegmentedControl *)segmentControl {
+    self.onlyOnlineFriends = (segmentControl.selectedSegmentIndex == 1);
+    [self.tableView reloadData];
+}
+
+- (void)handleEvent {
+    NSLog(@"VKFriendsController - handle event");
+    [self refreshData];
+}
+
+- (void)dealloc {
+    [[VKLongPollService getSharedInstance] removeUserStatusEventObserver:self];
 }
 
 - (void)refreshData {
     __weak VKFriendsController *weakSelf = self;
     self.service = [[VKFriendsService alloc] initWithCompletionBlock:^(NSArray *array) {
-        // TODO: проверить!
-        // если код этого блока выполняется в потоке,
-        // параллельном main-потоку, то необходима синхронизация
         weakSelf.friends = array;
+        NSIndexSet *indexSet = [array indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+            VKFriendInfo *info = (VKFriendInfo *)obj;
+            return info.online.boolValue;
+        }];
+        weakSelf.onlineFriends = [array objectsAtIndexes:indexSet];
         weakSelf.friendsMap = [weakSelf createDictionaryFromFriendsArray:array];
 
         // получаем массив упорядоченных ключей (англ. символы вначале)
@@ -117,7 +152,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *key = [self.orderedKeys objectAtIndex:(NSUInteger)indexPath.section];
-    NSArray *valuesArray = (NSArray *) [self.friendsMap valueForKey:key];
+    NSArray *valuesArray = self.onlyOnlineFriends ? self.onlineFriends : (NSArray *)[self.friendsMap valueForKey:key];
 
     if (indexPath.row > valuesArray.count - 1) {
         return [[UITableViewCell alloc] init];
@@ -127,7 +162,7 @@
         if (!cell)
             cell = [[VKFriendsListCell alloc] init];
         VKFriendInfo *friendInfo = [valuesArray objectAtIndex:(NSUInteger)indexPath.row];
-        [cell fillByFriendsInfo:friendInfo];
+        [cell fillByFriendsInfo:friendInfo shiftMark:self.onlyOnlineFriends];
         return cell;
     }
 }
@@ -138,22 +173,22 @@
 
 // количество секций
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return self.orderedKeys.count;
+    return self.onlyOnlineFriends ? 1 : self.orderedKeys.count;
 }
 
 // количество ячеек в секции
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     NSString *key = [self.orderedKeys objectAtIndex:(NSUInteger)section];
-    return ((NSArray *)[self.friendsMap valueForKey:key]).count;
+    return self.onlyOnlineFriends ? self.onlineFriends.count : ((NSArray *)[self.friendsMap valueForKey:key]).count;
 }
 
 - (NSString *)tableView:(UITableView *)aTableView titleForHeaderInSection:(NSInteger)section {
-    return [self.orderedKeys objectAtIndex:(NSUInteger)section];
+    return self.onlyOnlineFriends ? nil : [self.orderedKeys objectAtIndex:(NSUInteger)section];
 }
 
 // массив заголовков секции
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
-    return self.orderedKeys;
+    return self.onlyOnlineFriends ? @[] : self.orderedKeys;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index {
@@ -164,6 +199,7 @@
 #pragma mark EGORefreshTableHeaderDelegate Methods
 
 - (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view {
+    NSLog(@"egoRefreshTableHeaderDidTriggerRefresh");
     [self refreshData];
 }
 

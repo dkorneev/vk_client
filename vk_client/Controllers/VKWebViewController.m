@@ -1,8 +1,7 @@
 //
-// Created by admin on 11/24/12.
+// Created by dkorneev on 11/24/12.
 //
-// To change the template use AppCode | Preferences | File Templates.
-//
+
 
 #import "VKWebViewController.h"
 #import "VKFriendsController.h"
@@ -54,15 +53,17 @@
             __weak VKWebViewController *weakSelf = self;
             self.longPollInfoService = [[VKLongPollInfoService alloc] initWithCompletionBlock:^(NSObject *object) {
                 VKLongPollInfo *info = (VKLongPollInfo *)object;
-                weakSelf.longPollService = [[VKLongPollService alloc] initWithKey:info.key
+
+                // создает объект класса VKLongPollService, причем указатель на созданный объект
+                // в контроллере не сохраняем, его можно получить [VKLongPollService getSharedInstance]
+                VKLongPollService *longPollService = [ [VKLongPollService alloc] initWithKey:info.key
                                                                            server:info.server
-                                                                               ts:info.ts
-                                                                  completionBlock:^(NSObject *object1){}];
-                [weakSelf.longPollService start];
+                                                                               ts:info.ts ];
+                [longPollService start]; // запуск сервиса оповещений
+                [weakSelf showTabBar];
             }];
             [self.longPollInfoService getLongPoolServerSettings];
 
-            [self showTabBar];                                                                     
         }
     }
     return ([request.URL.host isEqualToString:@"oauth.vk.com"] || [request.URL.host isEqualToString:@"login.vk.com"]);
@@ -74,7 +75,7 @@
     [VKUtils configNavigationBar:friendsNav.navigationBar];
     [friendsNav pushViewController:[[VKFriendsController alloc] init] animated:NO];
     friendsNav.tabBarItem =
-            [[UITabBarItem alloc] initWithTitle:@"Контакты" image:[UIImage imageNamed:@"tabbar-contacts-icon.png"] tag:0];
+            [[UITabBarItem alloc] initWithTitle:@"Друзья" image:[UIImage imageNamed:@"tabbar-contacts-icon.png"] tag:0];
 
     // Диалоги
     UINavigationController *dialogsNav = [[UINavigationController alloc] init];

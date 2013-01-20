@@ -1,8 +1,7 @@
 //
-// Created by admin on 1/6/13.
+// Created by dkorneev on 1/6/13.
 //
-// To change the template use AppCode | Preferences | File Templates.
-//
+
 
 
 #import <Foundation/Foundation.h>
@@ -12,5 +11,6 @@
 
 @property (nonatomic, strong) NSString *ts;
 @property (nonatomic, strong) NSArray *updates;
+@property (nonatomic, strong) NSString *failed;
 
 @end

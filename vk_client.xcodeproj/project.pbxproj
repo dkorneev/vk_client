@@ -79,7 +79,6 @@
 		586034CBA439488CE37E1560 /* VKDialogsListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 58603C827F250E9669ED437E /* VKDialogsListCell.m */; };
 		5860350385FFBFE0B2961D9D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 586032345429D7839A10D98B /* Default-568h@2x.png */; };
 		5860351BB6E89DD77DCF9266 /* VKAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 586036C69385034F85FC60A4 /* VKAppDelegate.m */; };
-		58603536CB87F66E59B3B1E1 /* SendButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 586039481E31367656CFAC6E /* SendButton@2x.png */; };
 		58603569B934CF522CABB0B9 /* VKDocumentAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 586039F6C58AEA276B65883E /* VKDocumentAttachment.m */; };
 		58603585C5AEF6A2651A1855 /* whiteArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5860313E21B288628BE8000F /* whiteArrow@2x.png */; };
 		586035940BD49FFB628CB6DE /* Refresh_Down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58603A060BC31B622D18B9E6 /* Refresh_Down@2x.png */; };
@@ -87,13 +86,13 @@
 		5860359BE6B8881714F2461D /* HelveticaNeueCyr-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 58603D36D9118276308A5014 /* HelveticaNeueCyr-Bold.otf */; };
 		586035A6DBF789309E3A4D8C /* NSBubbleData.m in Sources */ = {isa = PBXBuildFile; fileRef = 586035E4E09EE07072DC97F0 /* NSBubbleData.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		586035A822562EEC58DD1C86 /* VKLoginButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 58603814D5A6C05CDF3D224E /* VKLoginButton.m */; };
-		586035C708C57913DB88CB76 /* SendButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 58603CABD0CFBC5761291D4F /* SendButton.png */; };
 		586035D68449C43F360BE97F /* AttachButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 5860335F88391CF39C71D3BB /* AttachButton.png */; };
 		586035FB0F9291F34606A7A3 /* AttachGeo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58603C2453EE2AFA7A6E89B8 /* AttachGeo@2x.png */; };
 		586035FB70B3BED624CD5C84 /* Blue_Bubble_Selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 58603DB7E9A37FC7CC1FEF71 /* Blue_Bubble_Selected.png */; };
 		586035FEAF14375122C69E71 /* SendButton_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 58603F8791CFD1D1071CE713 /* SendButton_pressed.png */; };
 		58603607EE37CC24305F9814 /* RegButton_pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58603E8D24DABAFE905AEAE5 /* RegButton_pressed@2x.png */; };
 		5860360F1AC341FCA5897D9A /* Request_Accepted_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 5860393137D0DE7503818DC0 /* Request_Accepted_pressed.png */; };
+		58603612C6DE31AE23F0F09D /* devider@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58603D82F97594A54423E949 /* devider@2x.png */; };
 		58603653990453C4033607D4 /* DarkButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 5860335688E62304C9BD0E7F /* DarkButton.png */; };
 		5860366B8F1D5902909B3C6E /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58603F54A20977B94F61EDC5 /* SenTestingKit.framework */; };
 		586037005E9EF9A6CF29B1A6 /* Blue_Bubble_Selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 586030DC908588E2410C99A0 /* Blue_Bubble_Selected@2x.png */; };
@@ -305,7 +304,6 @@
 		5860391F42B1E84F4DCA463C /* typingSomeone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = typingSomeone.png; sourceTree = "<group>"; };
 		586039261A64C5C8BBEA73A6 /* Background_Dark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Background_Dark@2x.png"; sourceTree = "<group>"; };
 		5860393137D0DE7503818DC0 /* Request_Accepted_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Request_Accepted_pressed.png; sourceTree = "<group>"; };
-		586039481E31367656CFAC6E /* SendButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SendButton@2x.png"; sourceTree = "<group>"; };
 		58603951BAE621A7CD06E8B3 /* AttachButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AttachButton@2x.png"; sourceTree = "<group>"; };
 		5860395A1FCEF6B3DA41850A /* LoginButton_pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LoginButton_pressed@2x.png"; sourceTree = "<group>"; };
 		5860398F94D63063F2208C02 /* VKFriendsListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VKFriendsListCell.h; sourceTree = "<group>"; };
@@ -350,7 +348,6 @@
 		58603C71E642D7F881B84E8D /* VKRegistrationButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VKRegistrationButton.m; sourceTree = "<group>"; };
 		58603C827F250E9669ED437E /* VKDialogsListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VKDialogsListCell.m; sourceTree = "<group>"; };
 		58603C9CCE65D701D7461DEA /* Sent@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Sent@2x.png"; sourceTree = "<group>"; };
-		58603CABD0CFBC5761291D4F /* SendButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SendButton.png; sourceTree = "<group>"; };
 		58603CC680847A6643B76CB2 /* VKPhotoAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VKPhotoAttachment.m; sourceTree = "<group>"; };
 		58603CD873DA56EFC88E010A /* DockMessages@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DockMessages@2x.png"; sourceTree = "<group>"; };
 		58603CF6B14DA76748803648 /* InputField@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "InputField@2x.png"; sourceTree = "<group>"; };
@@ -361,6 +358,7 @@
 		58603D57A9AFF5C34D4B9508 /* Header_Button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Header_Button.png; sourceTree = "<group>"; };
 		58603D61071728C7352A6885 /* UIExpandingTextViewInternal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIExpandingTextViewInternal.m; sourceTree = "<group>"; };
 		58603D6758547A0CFF84F039 /* VKFriendsService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VKFriendsService.m; sourceTree = "<group>"; };
+		58603D82F97594A54423E949 /* devider@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "devider@2x.png"; sourceTree = "<group>"; };
 		58603D9E4F171D5DCFCAFD63 /* Header_black@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Header_black@2x.png"; sourceTree = "<group>"; };
 		58603DAD1AC34E6F3B271AD8 /* VKLongPollInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VKLongPollInfo.h; sourceTree = "<group>"; };
 		58603DB7E9A37FC7CC1FEF71 /* Blue_Bubble_Selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Blue_Bubble_Selected.png; sourceTree = "<group>"; };
@@ -485,7 +483,6 @@
 				586034D717D14783140E269D /* toolbarbg.png */,
 				586035BEEB7872D924DCB25E /* toolbarbg@2x.png */,
 			);
-			lastKnownFileType = text;
 			path = tabbar_images;
 			sourceTree = "<group>";
 		};
@@ -736,8 +733,6 @@
 				58603D2684CE5E42C39AC3C1 /* Request_Accepted@2x.png */,
 				58603F8791CFD1D1071CE713 /* SendButton_pressed.png */,
 				58603E22A76C6693161461AB /* SendButton_pressed@2x.png */,
-				58603CABD0CFBC5761291D4F /* SendButton.png */,
-				586039481E31367656CFAC6E /* SendButton@2x.png */,
 				586031112FBC2DF7D7A37E27 /* Sent.png */,
 				58603C9CCE65D701D7461DEA /* Sent@2x.png */,
 				58603F45A99EE605C9776810 /* Typing.png */,
@@ -751,6 +746,7 @@
 				586039D9C03AFC45D31D45D9 /* arrows */,
 				586035367DF0E9F7E738D6B1 /* bubble_images */,
 				58603384CC5DA905290C424B /* tabbar_images */,
+				58603D82F97594A54423E949 /* devider@2x.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -941,8 +937,6 @@
 				5860318B02E2E1DCD92C655A /* Request_Accepted@2x.png in Resources */,
 				586035FEAF14375122C69E71 /* SendButton_pressed.png in Resources */,
 				58603185FB0E1DE6A23171D6 /* SendButton_pressed@2x.png in Resources */,
-				586035C708C57913DB88CB76 /* SendButton.png in Resources */,
-				58603536CB87F66E59B3B1E1 /* SendButton@2x.png in Resources */,
 				58603BC63A60BB5192D755CF /* Sent.png in Resources */,
 				586033B0700D52B2ECFA0EA9 /* Sent@2x.png in Resources */,
 				5860316A9195D19EE667B06B /* Typing.png in Resources */,
@@ -979,6 +973,7 @@
 				58603599169E2B8FD1A693E9 /* textbg@2x.png in Resources */,
 				58603853CCC228720269EFDC /* toolbarbg.png in Resources */,
 				58603AC1E776437E9B8AFD2C /* toolbarbg@2x.png in Resources */,
+				58603612C6DE31AE23F0F09D /* devider@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

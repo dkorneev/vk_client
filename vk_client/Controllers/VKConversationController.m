@@ -1,7 +1,5 @@
 //
-// Created by admin on 12/26/12.
-//
-// To change the template use AppCode | Preferences | File Templates.
+// Created by dkorneev on 12/26/12.
 //
 
 
@@ -94,7 +92,6 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    /* Listen for keyboard */
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
@@ -102,8 +99,9 @@
 - (NSBubbleData *)createPhotoBubble:(VKPhotoAttachment *)attachment date:(NSDate *)date bubbleType:(NSBubbleType)bubbleType {
     CGRect pictureFrame = CGRectMake(0, 0, 150, 150);
     NINetworkImageView *pictureView = [[NINetworkImageView alloc] initWithImage:[[UIImage alloc] init]];
+    pictureView.contentMode = UIViewContentModeCenter;
     pictureView.frame = pictureFrame;
-    [pictureView setPathToNetworkImage:attachment.source];
+    [pictureView setPathToNetworkImage:attachment.source contentMode:UIViewContentModeScaleAspectFill];
     pictureView.layer.masksToBounds = YES;
     [pictureView.layer setCornerRadius:5.0];
     pictureView.sizeForDisplay = NO;

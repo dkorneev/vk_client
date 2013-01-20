@@ -1,8 +1,7 @@
 //
-// Created by admin on 12/1/12.
+// Created by dkorneev on 12/1/12.
 //
-// To change the template use AppCode | Preferences | File Templates.
-//
+
 
 
 #import <Foundation/Foundation.h>

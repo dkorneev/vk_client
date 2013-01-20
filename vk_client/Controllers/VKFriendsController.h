@@ -1,15 +1,15 @@
 //
-// Created by admin on 11/25/12.
+// Created by dkorneev on 11/25/12.
 //
-// To change the template use AppCode | Preferences | File Templates.
-//
+
 
 
 #import <Foundation/Foundation.h>
 #import "VKPullRefreshTableViewController.h"
+#import "VKLongPollService.h"
 
 @class VKFriendsService;
 
 
-@interface VKFriendsController : VKPullRefreshTableViewController
+@interface VKFriendsController : VKPullRefreshTableViewController <VKLongPollListenerProtocol>
 @end
