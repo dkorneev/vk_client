@@ -37,14 +37,7 @@
                      resourcePath:@"/users.get?"
                   queryParameters:params]];
 
-    RKObjectMapping *friendsMapping = [RKObjectMapping mappingForClass:[VKFriendInfo class]];
-    [friendsMapping mapKeyPath:@"uid" toAttribute:@"userId"];
-    [friendsMapping mapKeyPath:@"first_name" toAttribute:@"firstName"];
-    [friendsMapping mapKeyPath:@"last_name" toAttribute:@"lastName"];
-    [friendsMapping mapKeyPath:@"photo" toAttribute:@"photo"];
-    [friendsMapping mapKeyPath:@"online" toAttribute:@"online"];
-
-    [loader.mappingProvider setMapping:friendsMapping forKeyPath:@"response"];
+    [loader.mappingProvider setMapping:[VKFriendInfo mapping]forKeyPath:@"response"];
 
     loader.delegate = self;
     [loader send];

@@ -8,42 +8,39 @@
 
 @interface VKFriendsService ()
 @property(nonatomic, copy) void (^completionBlock)(NSArray *);
+@property(nonatomic, copy) void (^errorBlock)();
+@property(nonatomic, strong) RKObjectLoader *loader;
+
 @end
 
 @implementation VKFriendsService
 
-- (id)initWithCompletionBlock: (void(^)(NSArray *))arg {
+- (id)initWithCompletionBlock:(void (^)(NSArray *))completionBlock errorBlock:(void (^)())errorBlock {
     self = [super init];
     if (self) {
-        self.completionBlock = arg;
+        self.completionBlock = completionBlock;
+        self.errorBlock = errorBlock;
     }
     return self;
 }
 
 - (void)getFriends {
-    NSDictionary *params = [NSDictionary dictionaryWithObjects:@[
-            [[NSUserDefaults standardUserDefaults] valueForKey:@"user_id"],
-            @"uid,first_name,last_name,nickname,photo",
-            [[NSUserDefaults standardUserDefaults] valueForKey:@"access_token"]
-    ] forKeys:@[@"uid", @"fields", @"access_token"] ];
+    NSString *userId = [[NSUserDefaults standardUserDefaults] valueForKey:@"user_id"];
+    NSString *accessToken = [[NSUserDefaults standardUserDefaults] valueForKey:@"access_token"];
+    NSDictionary *params = @{
+            @"uid" : userId,
+            @"fields" : @"uid,first_name,last_name,nickname,photo",
+            @"access_token" : accessToken};
 
-    RKObjectLoader *loader = nil;
-    loader = [[RKObjectManager sharedManager] loaderWithURL:
+    self.loader = [[RKObjectManager sharedManager] loaderWithURL:
             [RKURL URLWithBaseURL:[NSURL URLWithString:@"https://api.vk.com/method"]
                      resourcePath:@"/friends.get?"
                   queryParameters:params]];
 
-    RKObjectMapping *friendsMapping = [RKObjectMapping mappingForClass:[VKFriendInfo class]];
-    [friendsMapping mapKeyPath:@"uid" toAttribute:@"userId"];
-    [friendsMapping mapKeyPath:@"first_name" toAttribute:@"firstName"];
-    [friendsMapping mapKeyPath:@"last_name" toAttribute:@"lastName"];
-    [friendsMapping mapKeyPath:@"photo" toAttribute:@"photo"];
-    [friendsMapping mapKeyPath:@"online" toAttribute:@"online"];
+    [self.loader.mappingProvider setMapping:[VKFriendInfo mapping] forKeyPath:@"response"];
 
-    [loader.mappingProvider setMapping:friendsMapping forKeyPath:@"response"];
-
-    loader.delegate = self;
-    [loader send];
+    self.loader.delegate = self;
+    [self.loader send];
 }
 
 - (void)objectLoader:(RKObjectLoader *)objectLoader didFailWithError:(NSError *)error {
@@ -55,6 +52,11 @@
 - (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects {
     if (_completionBlock)
         _completionBlock(objects);
+}
+
+- (void)dealloc {
+    [self.loader reset];
+    self.loader.delegate = nil;
 }
 
 @end

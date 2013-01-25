@@ -17,4 +17,6 @@
 @property (nonatomic, strong) NSString *photo;
 @property (nonatomic, strong) NSNumber *online;
 
++ (RKObjectMapping *)mapping;
+
 @end

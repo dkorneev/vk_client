@@ -15,16 +15,20 @@
 #import "VKAudioAttachment.h"
 #import "VKDocumentAttachment.h"
 #import "NINetworkImageView.h"
+#import "VKSendMessageService.h"
 
 #define kDefaultToolbarHeight 40
 #define kDefaultNavigationBarHeight 44
 
 @interface VKConversationController ()
 @property(nonatomic, strong) VKFriendInfo *friend;
-@property(nonatomic, strong) VKDialogsService *service;
 @property(nonatomic, strong) NSArray *bubblesData;
 @property(nonatomic, strong) UIBubbleTableView *bubbleView;
 @property(nonatomic, strong) UIInputToolbar *inputToolbar;
+
+@property(nonatomic, strong) VKDialogsService *service;
+@property(nonatomic, strong) VKSendMessageService *messageService;
+
 @end
 
 @implementation VKConversationController
@@ -45,11 +49,11 @@
 
 - (void)refresh {
     __weak VKConversationController *weakSelf = self;
-    self.service = [[VKDialogsService alloc] initWithCompletionBlock:^(NSArray *array) {
+
+    void (^block)(NSArray *) = ^(NSArray *array) {
         NSMutableArray *bubblesData = [NSMutableArray new];
         for (VKDialogInfo *curInfo in array) {
             NSMutableArray *newBubbles = [NSMutableArray new];
-
             NSString *text = curInfo.body ? curInfo.body : @"";
             NSDate *date = [NSDate dateWithTimeIntervalSince1970:curInfo.date.unsignedIntValue];
             NSString *myId = [[NSUserDefaults standardUserDefaults] valueForKey:@"user_id"];
@@ -59,9 +63,9 @@
             if (curInfo.attachments) {
                 for (NSObject *curAttachment in curInfo.attachments) {
                     if ([curAttachment isKindOfClass:[VKPhotoAttachment class]]) {
-                        NSBubbleData *bubble = [self createPhotoBubble:(VKPhotoAttachment *) curAttachment
-                                                                  date:date
-                                                            bubbleType:bubbleType];
+                        NSBubbleData *bubble = [weakSelf createPhotoBubble:(VKPhotoAttachment *) curAttachment
+                                                                      date:date
+                                                                bubbleType:bubbleType];
                         [newBubbles addObject:bubble];
 
                     } else if ([curAttachment isKindOfClass:[VKAudioAttachment class]]) {
@@ -84,9 +88,11 @@
         }
         weakSelf.bubblesData = bubblesData;
 
-        [_bubbleView reloadData];
-        [_bubbleView scrollToLastRow:YES];
-    }];
+        [weakSelf.bubbleView reloadData];
+        [weakSelf.bubbleView scrollToLastRow:YES];
+    };
+
+    self.service = [[VKDialogsService alloc] initWithCompletionBlock:block];
     [self.service getDialogHistory:_friend.userId];
 }
 
@@ -150,6 +156,13 @@
 - (void)inputButtonPressed:(NSString *)inputText {
     /* Called when toolbar button is pressed */
     NSLog(@"Pressed button with text: '%@'", inputText);
+    if (!self.messageService) {
+        void (^completionBLock)() = ^{};
+        void (^errorBlock)() = ^{};
+        self.messageService = [[VKSendMessageService alloc] initWithCompletionBlock:completionBLock errorBlock:errorBlock];
+    }
+//    [self.messageService se]
+
 }
 
 - (void)heightChanged:(float)diff {

@@ -28,13 +28,7 @@
     RKObjectLoader *loader = [[RKObjectManager sharedManager] loaderWithURL:
             [RKURL URLWithBaseURL:[NSURL URLWithString:@"https://api.vk.com/method"] resourcePath:resourcePath]];
 
-    RKObjectMapping *longPollMapping = [RKObjectMapping mappingForClass:[VKLongPollInfo class]];
-    [longPollMapping mapKeyPath:@"key" toAttribute:@"key"];
-    [longPollMapping mapKeyPath:@"server" toAttribute:@"server"];
-    [longPollMapping mapKeyPath:@"ts" toAttribute:@"ts"];
-
-    [loader.mappingProvider setMapping:longPollMapping forKeyPath:@"response"];
-
+    [loader.mappingProvider setMapping:[VKLongPollInfo mapping] forKeyPath:@"response"];
     loader.delegate = self;
     [loader send];
 }

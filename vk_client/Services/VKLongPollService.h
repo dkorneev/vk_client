@@ -7,6 +7,8 @@
 #import <Foundation/Foundation.h>
 #import "RestKit.h"
 
+@class VKLongPollInfoService;
+
 @protocol VKLongPollListenerProtocol <NSObject>
 - (void)handleEvent;
 @end;
@@ -15,11 +17,13 @@
 
 + (VKLongPollService *)getSharedInstance;
 
-- (id)initWithKey:(NSString *)key server:(NSString *)server ts:(NSString *)ts;
+- (id)init;
 
 - (void)stop;
 
-- (void)start;
+// completionBlock - вызывается после получения информации, необходимой для работы longPoll-механизма,
+// непосредственно перед запуском первого запроса
+- (void)start:(void (^)())completionBlock;
 
 - (void)addMessagesEventObserver:(id <VKLongPollListenerProtocol>)object;
 

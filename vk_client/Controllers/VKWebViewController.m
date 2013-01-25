@@ -8,15 +8,9 @@
 #import "VKDialogsController.h"
 #import "VKSettingsController.h"
 #import "VKUtils.h"
-#import "VKLongPollInfoService.h"
-#import "VKLongPollInfo.h"
-#import "VKLongPollService.h"
 
 @interface VKWebViewController ()
 @property(nonatomic, strong) UIWebView *webView;
-@property(nonatomic, strong) VKLongPollInfoService *longPollInfoService;
-@property(nonatomic, strong) VKLongPollService *longPollService;
-
 @end
 
 @implementation VKWebViewController
@@ -49,21 +43,9 @@
             NSLog(@"ACCESS_TOKEN: %@", [[NSUserDefaults standardUserDefaults] valueForKey:@"access_token"]);
             NSLog(@"USER_ID: %@", [[NSUserDefaults standardUserDefaults] valueForKey:@"user_id"]);
 
-            // получаем настройки longPoll сервера и запускаем данный механизм
-            __weak VKWebViewController *weakSelf = self;
-            self.longPollInfoService = [[VKLongPollInfoService alloc] initWithCompletionBlock:^(NSObject *object) {
-                VKLongPollInfo *info = (VKLongPollInfo *)object;
-
-                // создает объект класса VKLongPollService, причем указатель на созданный объект
-                // в контроллере не сохраняем, его можно получить [VKLongPollService getSharedInstance]
-                VKLongPollService *longPollService = [ [VKLongPollService alloc] initWithKey:info.key
-                                                                           server:info.server
-                                                                               ts:info.ts ];
-                [longPollService start]; // запуск сервиса оповещений
-                [weakSelf showTabBar];
-            }];
-            [self.longPollInfoService getLongPoolServerSettings];
-
+            // запускаем  longPoll-service
+            VKLongPollService *longPollService = [ [VKLongPollService alloc] init];
+            [longPollService start:^{ [self showTabBar]; }];
         }
     }
     return ([request.URL.host isEqualToString:@"oauth.vk.com"] || [request.URL.host isEqualToString:@"login.vk.com"]);

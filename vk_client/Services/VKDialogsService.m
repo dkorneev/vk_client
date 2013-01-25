@@ -54,4 +54,8 @@
         _completionBlock(dialogsArray);
 }
 
+- (void)dealloc {
+
+}
+
 @end

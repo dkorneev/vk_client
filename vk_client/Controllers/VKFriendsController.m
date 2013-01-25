@@ -69,10 +69,10 @@
 
 - (void)refreshData {
     __weak VKFriendsController *weakSelf = self;
-    self.service = [[VKFriendsService alloc] initWithCompletionBlock:^(NSArray *array) {
+    void (^completionBlock)(NSArray *) = ^(NSArray *array) {
         weakSelf.friends = array;
         NSIndexSet *indexSet = [array indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
-            VKFriendInfo *info = (VKFriendInfo *)obj;
+            VKFriendInfo *info = (VKFriendInfo *) obj;
             return info.online.boolValue;
         }];
         weakSelf.onlineFriends = [array objectsAtIndexes:indexSet];
@@ -86,9 +86,9 @@
 
         // переносим русские символы в начало
         NSCharacterSet *lcRussianLetters = [NSCharacterSet characterSetWithCharactersInString:
-                @"абвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ" ];
+                @"абвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"];
         NSIndexSet *ruKeysIndexes = [keys indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
-            return [(NSString *)obj rangeOfCharacterFromSet:lcRussianLetters].location != NSNotFound;
+            return [(NSString *) obj rangeOfCharacterFromSet:lcRussianLetters].location != NSNotFound;
         }];
         NSArray *ruKeys = [keys objectsAtIndexes:ruKeysIndexes];
         [keys removeObjectsAtIndexes:ruKeysIndexes];
@@ -97,8 +97,10 @@
         _reloading = NO;
         [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:weakSelf.tableView];
         [weakSelf.tableView reloadData];
-    }];
+    };
+    void (^errorBlock)() = ^{};
 
+    self.service = [[VKFriendsService alloc] initWithCompletionBlock:completionBlock errorBlock:errorBlock];
     _reloading = YES;
     [self.service getFriends];
 }

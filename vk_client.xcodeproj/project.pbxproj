@@ -79,6 +79,7 @@
 		586034CBA439488CE37E1560 /* VKDialogsListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 58603C827F250E9669ED437E /* VKDialogsListCell.m */; };
 		5860350385FFBFE0B2961D9D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 586032345429D7839A10D98B /* Default-568h@2x.png */; };
 		5860351BB6E89DD77DCF9266 /* VKAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 586036C69385034F85FC60A4 /* VKAppDelegate.m */; };
+		58603523F2BF987B46465800 /* VKDataHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 586037D58D00FF07DDB1FA7A /* VKDataHolder.m */; };
 		58603569B934CF522CABB0B9 /* VKDocumentAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 586039F6C58AEA276B65883E /* VKDocumentAttachment.m */; };
 		58603585C5AEF6A2651A1855 /* whiteArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5860313E21B288628BE8000F /* whiteArrow@2x.png */; };
 		586035940BD49FFB628CB6DE /* Refresh_Down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58603A060BC31B622D18B9E6 /* Refresh_Down@2x.png */; };
@@ -161,6 +162,7 @@
 		58603ED9C0148D41368C8189 /* DockFaves@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58603217D40F6B8DD251D9A6 /* DockFaves@2x.png */; };
 		58603EE6F3800D832FE6D707 /* LoginButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58603E789AFF1D7DC6BA490A /* LoginButton@2x.png */; };
 		58603EEB271274E7EAC3ED5E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58603ACBEF966F07332204AF /* Foundation.framework */; };
+		58603EF323CD9B4F05776983 /* VKSendMessageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5860309A1C1B61B93A88E3A1 /* VKSendMessageService.m */; };
 		58603F180FF18E692C35FFC3 /* VKEditableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 58603FA40E59E007732C986F /* VKEditableCell.m */; };
 		58603F1F5D6A96BD8E524518 /* DarkButton_Pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58603284C9FCAEDA7F843951 /* DarkButton_Pressed@2x.png */; };
 		58603F231C0867124FA55AC2 /* UIExpandingTextViewInternal.m in Sources */ = {isa = PBXBuildFile; fileRef = 58603D61071728C7352A6885 /* UIExpandingTextViewInternal.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -193,6 +195,7 @@
 		5860305146072F69C21A2171 /* UIBubbleTypingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIBubbleTypingTableViewCell.m; sourceTree = "<group>"; };
 		5860307C80525E1EAA941A0B /* typingMine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = typingMine.png; sourceTree = "<group>"; };
 		58603094208E3443F159206F /* VKLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VKLoginController.m; sourceTree = "<group>"; };
+		5860309A1C1B61B93A88E3A1 /* VKSendMessageService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VKSendMessageService.m; sourceTree = "<group>"; };
 		586030A2175BB4B35375FBA7 /* textbg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "textbg@2x.png"; sourceTree = "<group>"; };
 		586030A34752FA6CAC92BF84 /* VKTabBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VKTabBarItem.m; sourceTree = "<group>"; };
 		586030A3E0CBB6BD2AB54456 /* Request_Accepted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Request_Accepted.png; sourceTree = "<group>"; };
@@ -288,6 +291,7 @@
 		586037AD7FDA41DB8D8AD158 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
 		586037AFC254A5B0C987ABB0 /* AttachGeo_Pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AttachGeo_Pressed@2x.png"; sourceTree = "<group>"; };
 		586037D37CADE595BF6CD3CD /* Header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Header.png; sourceTree = "<group>"; };
+		586037D58D00FF07DDB1FA7A /* VKDataHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VKDataHolder.m; sourceTree = "<group>"; };
 		586037F3546BF48733A4BF05 /* Header_MultiChat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Header_MultiChat.png; sourceTree = "<group>"; };
 		586037F5530E4AC856292128 /* VKDialogsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VKDialogsController.m; sourceTree = "<group>"; };
 		586037FA92A3D0EE9AF52469 /* VKFriendsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VKFriendsController.m; sourceTree = "<group>"; };
@@ -334,6 +338,7 @@
 		58603B2026D73DCB2CEA8165 /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
 		58603B2BB192B1F1C50FA177 /* VKDialogsListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VKDialogsListCell.h; sourceTree = "<group>"; };
 		58603B68ADC398540FAB56B8 /* whiteArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteArrow.png; sourceTree = "<group>"; };
+		58603BB1C4142599DB8F4588 /* VKSendMessageService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VKSendMessageService.h; sourceTree = "<group>"; };
 		58603BC8E1B1A410875A38E4 /* Header_Avatar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Header_Avatar@2x.png"; sourceTree = "<group>"; };
 		58603C0EA70159B2458370ED /* UIBubbleTypingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIBubbleTypingTableViewCell.h; sourceTree = "<group>"; };
 		58603C13CCC8F8BA0582DA4C /* AttachGallery@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AttachGallery@2x.png"; sourceTree = "<group>"; };
@@ -393,6 +398,7 @@
 		58603FA15A85F75A30066ED2 /* AttachButton_Pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AttachButton_Pressed@2x.png"; sourceTree = "<group>"; };
 		58603FA40E59E007732C986F /* VKEditableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VKEditableCell.m; sourceTree = "<group>"; };
 		58603FB7F86142EACD43DA26 /* VKFriendsListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VKFriendsListCell.m; sourceTree = "<group>"; };
+		58603FBA03F1334A522138F7 /* VKDataHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VKDataHolder.h; sourceTree = "<group>"; };
 		58603FC6C447C186702F659E /* VKLongPollResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VKLongPollResponse.m; sourceTree = "<group>"; };
 		58603FEAD702DB04BDAD033F /* VKRegistrationButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VKRegistrationButton.h; sourceTree = "<group>"; };
 		8AF2806A6FF84BCCBCBB65C4 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
@@ -537,6 +543,8 @@
 				586038102BC81B374632C2F5 /* VKPullRefreshTableViewController.h */,
 				58603E514543B015D578CD7F /* VKConversationController.m */,
 				58603200557A50359CCA38FE /* VKConversationController.h */,
+				58603FBA03F1334A522138F7 /* VKDataHolder.h */,
+				586037D58D00FF07DDB1FA7A /* VKDataHolder.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -590,6 +598,8 @@
 				58603A56971F56635C595D4F /* VKLongPollInfoService.h */,
 				5860316D87B19ACF3B11A895 /* VKLongPollService.m */,
 				58603AF305E9BCF0FF30321F /* VKLongPollService.h */,
+				5860309A1C1B61B93A88E3A1 /* VKSendMessageService.m */,
+				58603BB1C4142599DB8F4588 /* VKSendMessageService.h */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1051,6 +1061,8 @@
 				58603D91DA4E7CE9E463F3E2 /* VKLongPollInfo.m in Sources */,
 				58603D5A1438906549EDE6E6 /* VKLongPollService.m in Sources */,
 				586030DCA4BC8FF949D1EA17 /* VKLongPollResponse.m in Sources */,
+				58603EF323CD9B4F05776983 /* VKSendMessageService.m in Sources */,
+				58603523F2BF987B46465800 /* VKDataHolder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

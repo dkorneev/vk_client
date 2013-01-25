@@ -9,7 +9,7 @@
 
 @interface VKFriendsService : NSObject <RKObjectLoaderDelegate>
 
-- (id)initWithCompletionBlock:(void (^)(NSArray *))arg;
+- (id)initWithCompletionBlock:(void (^)(NSArray *))completionBlock errorBlock:(void (^)())errorBlock;
 
 - (void)getFriends;
 

@@ -11,6 +11,7 @@
 @class VKFriendInfo;
 @class VKDialogsService;
 @class UIInputToolbar;
+@class VKSendMessageService;
 
 
 @interface VKConversationController : UIViewController <UIBubbleTableViewDataSource, UIInputToolbarDelegate>
