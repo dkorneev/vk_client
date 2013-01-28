@@ -11,6 +11,8 @@
 
 - (void)getDialogs;
 
-- (void)getDialogHistory:(NSString *)userId;
+- (void)getDialogHistory:(NSNumber *)userId;
+
+- (BOOL)isLoading;
 
 @end

@@ -10,7 +10,6 @@
 
 - (id)initWithCompletionBlock:(void (^)())completionBlock errorBlock:(void (^)())errorBlock;
 
-- (void)sendMessage:(NSNumber *)uid chatId:(NSNumber *)chatId messageText:(NSString *)message;
-
+- (void)sendMessage:(NSNumber *)uid messageText:(NSString *)message;
 
 @end

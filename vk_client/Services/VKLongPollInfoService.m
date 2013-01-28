@@ -6,6 +6,7 @@
 
 #import "VKLongPollInfoService.h"
 #import "VKLongPollInfo.h"
+#import "VKConstants.h"
 
 
 @interface VKLongPollInfoService ()
@@ -26,7 +27,7 @@
     NSString *token = [[NSUserDefaults standardUserDefaults] valueForKey:@"access_token"];
     NSString *resourcePath = [NSString stringWithFormat:@"/messages.getLongPollServer?access_token=%@", token];
     RKObjectLoader *loader = [[RKObjectManager sharedManager] loaderWithURL:
-            [RKURL URLWithBaseURL:[NSURL URLWithString:@"https://api.vk.com/method"] resourcePath:resourcePath]];
+            [RKURL URLWithBaseURL:[NSURL URLWithString:kBaseUrlString] resourcePath:resourcePath]];
 
     [loader.mappingProvider setMapping:[VKLongPollInfo mapping] forKeyPath:@"response"];
     loader.delegate = self;

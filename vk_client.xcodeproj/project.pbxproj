@@ -10,6 +10,7 @@
 		58603018AE17AC2C8060A61B /* WhiteArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 586039A75F7DFC4731CCA14A /* WhiteArrow.png */; };
 		5860301B95AE9E08D26F8E59 /* Typing@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 586032021A4D48112D8A647E /* Typing@2x.png */; };
 		5860302058C79B3766D159F8 /* AttachButton_Pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 5860378238DA316DE26A2DE4 /* AttachButton_Pressed.png */; };
+		58603031B80B2400A5250B81 /* VKAbstractEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 58603FD2CDB884ECDE284AC0 /* VKAbstractEvent.m */; };
 		58603048DEDE899A34610B34 /* VKLongPollInfoService.m in Sources */ = {isa = PBXBuildFile; fileRef = 586039D7CA040DC9970326DD /* VKLongPollInfoService.m */; };
 		58603051F0D8CFC5536C0B54 /* Delete_attach@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58603F03DB2EB1979F99C2BE /* Delete_attach@2x.png */; };
 		5860305BB792BFEA55C07A58 /* Avatar_Round.png in Resources */ = {isa = PBXBuildFile; fileRef = 586039F39945E1A139F2A998 /* Avatar_Round.png */; };
@@ -25,6 +26,7 @@
 		586030DCA4BC8FF949D1EA17 /* VKLongPollResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 58603FC6C447C186702F659E /* VKLongPollResponse.m */; };
 		586030E57884810AFF699AB3 /* VKUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 586032894CEF796BCAE4CB97 /* VKUtils.m */; };
 		586030F26ACAEB92183AFFF9 /* Header.png in Resources */ = {isa = PBXBuildFile; fileRef = 586037D37CADE595BF6CD3CD /* Header.png */; };
+		586030FCBE3324EFAFDD064E /* VKConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 58603026FE47458F2FAF802E /* VKConstants.m */; };
 		5860311B3427C2276E48DFB4 /* UIBubbleTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 58603DF93BF9F6CB39095F63 /* UIBubbleTableView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		5860312A937C963543A13A06 /* MessagesGroup.png in Resources */ = {isa = PBXBuildFile; fileRef = 586038A2A963AA1B447F8321 /* MessagesGroup.png */; };
 		5860312A9DEA76BE68F9DF65 /* LoginButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 586039E45B7918219F1F0B23 /* LoginButton.png */; };
@@ -69,6 +71,7 @@
 		586033ED9D2D421ED4C60007 /* tabbar-settings-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58603D07F85D079DFBE4AD97 /* tabbar-settings-icon@2x.png */; };
 		5860341BCCB3AA90E596486A /* AttachButton_Pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58603FA15A85F75A30066ED2 /* AttachButton_Pressed@2x.png */; };
 		58603439983A2B211C62E33F /* VKFriendsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 586037FA92A3D0EE9AF52469 /* VKFriendsController.m */; };
+		58603446521D285E2445F278 /* VKMessageEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 58603569019E8ED975E0A691 /* VKMessageEvent.m */; };
 		5860344EA9366AACE204228D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58603ACBEF966F07332204AF /* Foundation.framework */; };
 		58603456406A8C7F1FDA5268 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 58603C3F5EBA3BB04C37FDFF /* Default.png */; };
 		5860346405C837EC452247EE /* VKDialogsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 586037F5530E4AC856292128 /* VKDialogsController.m */; };
@@ -79,7 +82,6 @@
 		586034CBA439488CE37E1560 /* VKDialogsListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 58603C827F250E9669ED437E /* VKDialogsListCell.m */; };
 		5860350385FFBFE0B2961D9D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 586032345429D7839A10D98B /* Default-568h@2x.png */; };
 		5860351BB6E89DD77DCF9266 /* VKAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 586036C69385034F85FC60A4 /* VKAppDelegate.m */; };
-		58603523F2BF987B46465800 /* VKDataHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 586037D58D00FF07DDB1FA7A /* VKDataHolder.m */; };
 		58603569B934CF522CABB0B9 /* VKDocumentAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 586039F6C58AEA276B65883E /* VKDocumentAttachment.m */; };
 		58603585C5AEF6A2651A1855 /* whiteArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5860313E21B288628BE8000F /* whiteArrow@2x.png */; };
 		586035940BD49FFB628CB6DE /* Refresh_Down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58603A060BC31B622D18B9E6 /* Refresh_Down@2x.png */; };
@@ -109,6 +111,7 @@
 		586038E8567AAFFD30EF1574 /* InputField@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58603CF6B14DA76748803648 /* InputField@2x.png */; };
 		58603902A7CF7EAF0306E90D /* WhiteArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 586039C89765426107718F43 /* WhiteArrow@2x.png */; };
 		58603909C6A3F951A550836D /* Header_Button.png in Resources */ = {isa = PBXBuildFile; fileRef = 58603D57A9AFF5C34D4B9508 /* Header_Button.png */; };
+		58603938864B2B442D81DDA0 /* VKUserStatusEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 586036A01A5A91548C93F5F6 /* VKUserStatusEvent.m */; };
 		58603947032AB223C13DF81F /* InputField.png in Resources */ = {isa = PBXBuildFile; fileRef = 58603EB3E825CFF3062BE609 /* InputField.png */; };
 		58603995A8712F2C55368C18 /* LoginButton_pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5860395A1FCEF6B3DA41850A /* LoginButton_pressed@2x.png */; };
 		586039DF615E2739B9AB2690 /* VKDialogInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 58603E5B9AB905E2BD7D9220 /* VKDialogInfo.m */; };
@@ -140,6 +143,8 @@
 		58603CAFB0B4FF0B9D579178 /* Request_Accepted_pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58603623C64974F775369F1A /* Request_Accepted_pressed@2x.png */; };
 		58603CB8EBDDCA52E2FF4218 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 586032996E36C70B36CC88EC /* CoreGraphics.framework */; };
 		58603CC27EFC1EF7BFEBC3AF /* VKRegistrationButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 58603C71E642D7F881B84E8D /* VKRegistrationButton.m */; };
+		58603CE2E9A94945FFBF0DA9 /* back-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 586034E2EE975F260D3D3CEC /* back-button@2x.png */; };
+		58603D3B8BBDEB02B285BBA2 /* VKNavBarAvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 586039DC8794BCB40447E45E /* VKNavBarAvatarView.m */; };
 		58603D3D0BF238E2E2555054 /* NotifyRequest@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 586035785AB13138B9966AE5 /* NotifyRequest@2x.png */; };
 		58603D484AF50205798FA997 /* HelveticaNeueCyr-Roman.otf in Resources */ = {isa = PBXBuildFile; fileRef = 586031AE40AED33A71F64E15 /* HelveticaNeueCyr-Roman.otf */; };
 		58603D5A1438906549EDE6E6 /* VKLongPollService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5860316D87B19ACF3B11A895 /* VKLongPollService.m */; };
@@ -158,6 +163,7 @@
 		58603E5A44D3BAF85CA75B19 /* Header_Back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5860382DE4A9820AFEBCF7CE /* Header_Back@2x.png */; };
 		58603E6A9CE76E8CF7EACBD5 /* Msg_LowBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 5860376AF9EC82F847148F92 /* Msg_LowBar.png */; };
 		58603E7E8A9CDBF7C53F1E2C /* AttachButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58603951BAE621A7CD06E8B3 /* AttachButton@2x.png */; };
+		58603E9F753D88D768B3F960 /* VKSendMessageResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 58603A6B16245BAAF981BC3A /* VKSendMessageResponse.m */; };
 		58603EB7070F3CE132FF8E28 /* AttachCamera.png in Resources */ = {isa = PBXBuildFile; fileRef = 58603362F453998C904D7412 /* AttachCamera.png */; };
 		58603ED9C0148D41368C8189 /* DockFaves@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58603217D40F6B8DD251D9A6 /* DockFaves@2x.png */; };
 		58603EE6F3800D832FE6D707 /* LoginButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58603E789AFF1D7DC6BA490A /* LoginButton@2x.png */; };
@@ -191,6 +197,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		58603026FE47458F2FAF802E /* VKConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VKConstants.m; sourceTree = "<group>"; };
 		58603035CAE5E5E19F23FFE2 /* UIBubbleTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIBubbleTableViewDataSource.h; sourceTree = "<group>"; };
 		5860305146072F69C21A2171 /* UIBubbleTypingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIBubbleTypingTableViewCell.m; sourceTree = "<group>"; };
 		5860307C80525E1EAA941A0B /* typingMine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = typingMine.png; sourceTree = "<group>"; };
@@ -203,6 +210,7 @@
 		586030BCA98406753E7D3C49 /* UIBubbleHeaderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIBubbleHeaderTableViewCell.h; sourceTree = "<group>"; };
 		586030D7E52612A2B5CFEC55 /* UIBubbleHeaderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIBubbleHeaderTableViewCell.m; sourceTree = "<group>"; };
 		586030DC908588E2410C99A0 /* Blue_Bubble_Selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Blue_Bubble_Selected@2x.png"; sourceTree = "<group>"; };
+		586030F829746896F7C61463 /* VKNavBarAvatarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VKNavBarAvatarView.h; sourceTree = "<group>"; };
 		586030FB7EDDD5657EB41FE3 /* bubbleMine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bubbleMine@2x.png"; sourceTree = "<group>"; };
 		58603104357DD190F6A3D73D /* VKSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VKSettingsController.h; sourceTree = "<group>"; };
 		586031112FBC2DF7D7A37E27 /* Sent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Sent.png; sourceTree = "<group>"; };
@@ -215,6 +223,7 @@
 		586031AE40AED33A71F64E15 /* HelveticaNeueCyr-Roman.otf */ = {isa = PBXFileReference; lastKnownFileType = file.otf; path = "HelveticaNeueCyr-Roman.otf"; sourceTree = "<group>"; };
 		586031B40C590FF44F16EAD7 /* Refresh_Up@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Refresh_Up@2x.png"; sourceTree = "<group>"; };
 		586031B421668924BACEDAB4 /* UIExpandingTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIExpandingTextView.m; sourceTree = "<group>"; };
+		586031B8023B2C6926961B52 /* VKSendMessageResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VKSendMessageResponse.h; sourceTree = "<group>"; };
 		586031F9351E2D30ADCAF6F3 /* Header_Back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Header_Back.png; sourceTree = "<group>"; };
 		58603200557A50359CCA38FE /* VKConversationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VKConversationController.h; sourceTree = "<group>"; };
 		586032021A4D48112D8A647E /* Typing@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Typing@2x.png"; sourceTree = "<group>"; };
@@ -254,10 +263,12 @@
 		586034B9F473591F92F15368 /* textbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = textbg.png; sourceTree = "<group>"; };
 		586034C5BA12F74E22E9FCCC /* typingSomeone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "typingSomeone@2x.png"; sourceTree = "<group>"; };
 		586034D717D14783140E269D /* toolbarbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toolbarbg.png; sourceTree = "<group>"; };
+		586034E2EE975F260D3D3CEC /* back-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back-button@2x.png"; sourceTree = "<group>"; };
 		586034E634BF501C59E6068E /* VKFriendsService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VKFriendsService.h; sourceTree = "<group>"; };
 		586034EFBAADD670CFE5E2A7 /* missingAvatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = missingAvatar.png; sourceTree = "<group>"; };
 		586035502FDEF7FAC325BAAD /* DockMessages.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DockMessages.png; sourceTree = "<group>"; };
 		58603554368119486996E576 /* Online_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Online_selected@2x.png"; sourceTree = "<group>"; };
+		58603569019E8ED975E0A691 /* VKMessageEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VKMessageEvent.m; sourceTree = "<group>"; };
 		58603573E3F507DD7D7A5347 /* VKSettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VKSettingsController.m; sourceTree = "<group>"; };
 		586035785AB13138B9966AE5 /* NotifyRequest@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NotifyRequest@2x.png"; sourceTree = "<group>"; };
 		5860358668438DA33790ABFE /* Header_Avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Header_Avatar.png; sourceTree = "<group>"; };
@@ -265,6 +276,7 @@
 		58603599DA57A269C1CAF9A6 /* AttachGallery_pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AttachGallery_pressed@2x.png"; sourceTree = "<group>"; };
 		5860359E404E2B84CF12649F /* Profile_Avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Profile_Avatar.png; sourceTree = "<group>"; };
 		586035BEEB7872D924DCB25E /* toolbarbg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "toolbarbg@2x.png"; sourceTree = "<group>"; };
+		586035CA8AFEB30A1142240F /* VKUserStatusEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VKUserStatusEvent.h; sourceTree = "<group>"; };
 		586035D7E0D56A481F762618 /* VKLoginButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VKLoginButton.h; sourceTree = "<group>"; };
 		586035E4E09EE07072DC97F0 /* NSBubbleData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSBubbleData.m; sourceTree = "<group>"; };
 		586035E6F82F664B8ACDBEFC /* DarkButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DarkButton@2x.png"; sourceTree = "<group>"; };
@@ -278,11 +290,14 @@
 		5860367877ED3F49545BF637 /* VKLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VKLoginController.h; sourceTree = "<group>"; };
 		5860368B87CF5FF8D522223B /* Header@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Header@2x.png"; sourceTree = "<group>"; };
 		5860368E2BCF4568641DD18C /* buttonbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buttonbg.png; sourceTree = "<group>"; };
+		5860369BB89CDE006700E550 /* VKAbstractEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VKAbstractEvent.h; sourceTree = "<group>"; };
+		586036A01A5A91548C93F5F6 /* VKUserStatusEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VKUserStatusEvent.m; sourceTree = "<group>"; };
 		586036B4845534EEA7F56D32 /* Refresh_Up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Refresh_Up.png; sourceTree = "<group>"; };
 		586036C69385034F85FC60A4 /* VKAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VKAppDelegate.m; sourceTree = "<group>"; };
 		586036D835E33E532F8D2BC3 /* tabbar-messages-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar-messages-icon@2x.png"; sourceTree = "<group>"; };
 		586036DC00CDB583377FCF35 /* DockFaves.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DockFaves.png; sourceTree = "<group>"; };
 		586036F1C55D6D3EE2C1D851 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		5860370DE4EC5652AF7B7C74 /* VKMessageEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VKMessageEvent.h; sourceTree = "<group>"; };
 		58603716DA34BC70F10BA331 /* VKUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VKUtils.h; sourceTree = "<group>"; };
 		5860371B20F344C269D15DBF /* VKPullRefreshTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VKPullRefreshTableViewController.m; sourceTree = "<group>"; };
 		5860376AF9EC82F847148F92 /* Msg_LowBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Msg_LowBar.png; sourceTree = "<group>"; };
@@ -291,7 +306,6 @@
 		586037AD7FDA41DB8D8AD158 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
 		586037AFC254A5B0C987ABB0 /* AttachGeo_Pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AttachGeo_Pressed@2x.png"; sourceTree = "<group>"; };
 		586037D37CADE595BF6CD3CD /* Header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Header.png; sourceTree = "<group>"; };
-		586037D58D00FF07DDB1FA7A /* VKDataHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VKDataHolder.m; sourceTree = "<group>"; };
 		586037F3546BF48733A4BF05 /* Header_MultiChat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Header_MultiChat.png; sourceTree = "<group>"; };
 		586037F5530E4AC856292128 /* VKDialogsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VKDialogsController.m; sourceTree = "<group>"; };
 		586037FA92A3D0EE9AF52469 /* VKFriendsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VKFriendsController.m; sourceTree = "<group>"; };
@@ -314,6 +328,7 @@
 		586039A75F7DFC4731CCA14A /* WhiteArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WhiteArrow.png; sourceTree = "<group>"; };
 		586039C89765426107718F43 /* WhiteArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WhiteArrow@2x.png"; sourceTree = "<group>"; };
 		586039D7CA040DC9970326DD /* VKLongPollInfoService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VKLongPollInfoService.m; sourceTree = "<group>"; };
+		586039DC8794BCB40447E45E /* VKNavBarAvatarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VKNavBarAvatarView.m; sourceTree = "<group>"; };
 		586039E45B7918219F1F0B23 /* LoginButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LoginButton.png; sourceTree = "<group>"; };
 		586039F39945E1A139F2A998 /* Avatar_Round.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Avatar_Round.png; sourceTree = "<group>"; };
 		586039F6C58AEA276B65883E /* VKDocumentAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VKDocumentAttachment.m; sourceTree = "<group>"; };
@@ -322,6 +337,7 @@
 		58603A4CAA1EF8C301766AA6 /* vk_client-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "vk_client-Prefix.pch"; sourceTree = "<group>"; };
 		58603A56971F56635C595D4F /* VKLongPollInfoService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VKLongPollInfoService.h; sourceTree = "<group>"; };
 		58603A600561249FB0E7D1C3 /* VKFriendsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VKFriendsController.h; sourceTree = "<group>"; };
+		58603A6B16245BAAF981BC3A /* VKSendMessageResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VKSendMessageResponse.m; sourceTree = "<group>"; };
 		58603A6C1E138127ADC6B41E /* AttachGallery.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AttachGallery.png; sourceTree = "<group>"; };
 		58603A90591ADC87F0BB7878 /* blueArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueArrow.png; sourceTree = "<group>"; };
 		58603A9DF5ED15F37CCF2102 /* Grey_Bubble_Selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Grey_Bubble_Selected.png; sourceTree = "<group>"; };
@@ -344,6 +360,7 @@
 		58603C13CCC8F8BA0582DA4C /* AttachGallery@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AttachGallery@2x.png"; sourceTree = "<group>"; };
 		58603C1B997CDD9D690D5867 /* grayArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grayArrow@2x.png"; sourceTree = "<group>"; };
 		58603C2453EE2AFA7A6E89B8 /* AttachGeo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AttachGeo@2x.png"; sourceTree = "<group>"; };
+		58603C35877754A2B9A819F0 /* VKConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VKConstants.h; sourceTree = "<group>"; };
 		58603C36D577F3F88E83FEA1 /* UIInputToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIInputToolbar.m; sourceTree = "<group>"; };
 		58603C3F5EBA3BB04C37FDFF /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		58603C4D69D5E5CD7397AAA8 /* blackArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackArrow.png; sourceTree = "<group>"; };
@@ -398,8 +415,8 @@
 		58603FA15A85F75A30066ED2 /* AttachButton_Pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AttachButton_Pressed@2x.png"; sourceTree = "<group>"; };
 		58603FA40E59E007732C986F /* VKEditableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VKEditableCell.m; sourceTree = "<group>"; };
 		58603FB7F86142EACD43DA26 /* VKFriendsListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VKFriendsListCell.m; sourceTree = "<group>"; };
-		58603FBA03F1334A522138F7 /* VKDataHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VKDataHolder.h; sourceTree = "<group>"; };
 		58603FC6C447C186702F659E /* VKLongPollResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VKLongPollResponse.m; sourceTree = "<group>"; };
+		58603FD2CDB884ECDE284AC0 /* VKAbstractEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VKAbstractEvent.m; sourceTree = "<group>"; };
 		58603FEAD702DB04BDAD033F /* VKRegistrationButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VKRegistrationButton.h; sourceTree = "<group>"; };
 		8AF2806A6FF84BCCBCBB65C4 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		BB65B02EE36B4092B0D6A084 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -430,6 +447,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		58603143D349595AA2282E88 /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				5860369BB89CDE006700E550 /* VKAbstractEvent.h */,
+				58603FD2CDB884ECDE284AC0 /* VKAbstractEvent.m */,
+				586035CA8AFEB30A1142240F /* VKUserStatusEvent.h */,
+				586036A01A5A91548C93F5F6 /* VKUserStatusEvent.m */,
+				5860370DE4EC5652AF7B7C74 /* VKMessageEvent.h */,
+				58603569019E8ED975E0A691 /* VKMessageEvent.m */,
+			);
+			path = Events;
+			sourceTree = "<group>";
+		};
 		586032D93B99F12D061B1276 /* vk_client */ = {
 			isa = PBXGroup;
 			children = (
@@ -444,6 +474,8 @@
 				586037538C7A270780B75444 /* Services */,
 				586033ED04EE9A8E4100CC24 /* Models */,
 				5860371F9016A89B8B3FD47A /* Fonts */,
+				58603026FE47458F2FAF802E /* VKConstants.m */,
+				58603C35877754A2B9A819F0 /* VKConstants.h */,
 			);
 			path = vk_client;
 			sourceTree = "<group>";
@@ -475,6 +507,8 @@
 				586032E37411B6924817190A /* table view cells */,
 				5860341EE022B7B35B157311 /* bubble_table_view */,
 				58603BFF81518F59FB4A1393 /* input_toolbar */,
+				586039DC8794BCB40447E45E /* VKNavBarAvatarView.m */,
+				586030F829746896F7C61463 /* VKNavBarAvatarView.h */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -504,6 +538,8 @@
 				58603DAD1AC34E6F3B271AD8 /* VKLongPollInfo.h */,
 				58603FC6C447C186702F659E /* VKLongPollResponse.m */,
 				5860346D69216B4ED71004B8 /* VKLongPollResponse.h */,
+				58603A6B16245BAAF981BC3A /* VKSendMessageResponse.m */,
+				586031B8023B2C6926961B52 /* VKSendMessageResponse.h */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -543,8 +579,6 @@
 				586038102BC81B374632C2F5 /* VKPullRefreshTableViewController.h */,
 				58603E514543B015D578CD7F /* VKConversationController.m */,
 				58603200557A50359CCA38FE /* VKConversationController.h */,
-				58603FBA03F1334A522138F7 /* VKDataHolder.h */,
-				586037D58D00FF07DDB1FA7A /* VKDataHolder.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -600,6 +634,7 @@
 				58603AF305E9BCF0FF30321F /* VKLongPollService.h */,
 				5860309A1C1B61B93A88E3A1 /* VKSendMessageService.m */,
 				58603BB1C4142599DB8F4588 /* VKSendMessageService.h */,
+				58603143D349595AA2282E88 /* Events */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -757,6 +792,7 @@
 				586035367DF0E9F7E738D6B1 /* bubble_images */,
 				58603384CC5DA905290C424B /* tabbar_images */,
 				58603D82F97594A54423E949 /* devider@2x.png */,
+				586034E2EE975F260D3D3CEC /* back-button@2x.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -984,6 +1020,7 @@
 				58603853CCC228720269EFDC /* toolbarbg.png in Resources */,
 				58603AC1E776437E9B8AFD2C /* toolbarbg@2x.png in Resources */,
 				58603612C6DE31AE23F0F09D /* devider@2x.png in Resources */,
+				58603CE2E9A94945FFBF0DA9 /* back-button@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1062,7 +1099,12 @@
 				58603D5A1438906549EDE6E6 /* VKLongPollService.m in Sources */,
 				586030DCA4BC8FF949D1EA17 /* VKLongPollResponse.m in Sources */,
 				58603EF323CD9B4F05776983 /* VKSendMessageService.m in Sources */,
-				58603523F2BF987B46465800 /* VKDataHolder.m in Sources */,
+				58603E9F753D88D768B3F960 /* VKSendMessageResponse.m in Sources */,
+				586030FCBE3324EFAFDD064E /* VKConstants.m in Sources */,
+				58603D3B8BBDEB02B285BBA2 /* VKNavBarAvatarView.m in Sources */,
+				58603031B80B2400A5250B81 /* VKAbstractEvent.m in Sources */,
+				58603446521D285E2445F278 /* VKMessageEvent.m in Sources */,
+				58603938864B2B442D81DDA0 /* VKUserStatusEvent.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

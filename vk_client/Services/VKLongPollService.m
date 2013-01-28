@@ -8,6 +8,9 @@
 #import "VKLongPollInfoService.h"
 #import "VKLongPollInfo.h"
 #import "RKManagedObjectLoader.h"
+#import "VKAbstractEvent.h"
+#import "VKMessageEvent.h"
+#import "VKUserStatusEvent.h"
 
 @interface VKLongPollService ()
 @property(nonatomic, copy) NSString *key;
@@ -72,7 +75,7 @@ static VKLongPollService *_sharedInstance = nil;
 }
 
 - (void)sendLongPollRequest {
-    NSString *resourcePath = [NSString stringWithFormat:@"?act=a_check&key=%@&ts=%@&wait=25&mode=2", self.key, self.ts];
+    NSString *resourcePath = [NSString stringWithFormat:@"?act=a_check&key=%@&ts=%@&wait=25&mode=0", self.key, self.ts];
     NSString *baseUrl = [NSString stringWithFormat:@"http://%@", self.server];
 
     if (!self.loader) {
@@ -116,7 +119,7 @@ static VKLongPollService *_sharedInstance = nil;
     for (NSArray *curUpdate in updates) {
         unsigned eventType = ((NSNumber *) [curUpdate objectAtIndex:0]).unsignedIntValue;
         NSInteger userId = -1 * ((NSNumber *) [curUpdate objectAtIndex:1]).integerValue;
-        short flags = ((NSNumber *) [curUpdate objectAtIndex:2]).shortValue;
+//        short flags = ((NSNumber *) [curUpdate objectAtIndex:2]).shortValue;
         switch (eventType) {
             case 1:
             case 2:
@@ -125,32 +128,36 @@ static VKLongPollService *_sharedInstance = nil;
             case 4: {
 
                 // расшифровка установленных флагов
-                BOOL unread = (BOOL) (flags & 1);
-                BOOL outbox = (BOOL) (flags & 2);
-                BOOL replied = (BOOL) (flags & 4);
-                BOOL important = (BOOL) (flags & 8);
-                BOOL chat = (BOOL) (flags & 16);
-                BOOL friends = (BOOL) (flags & 32);
-                BOOL spam = (BOOL) (flags & 64);
-                BOOL deleted = (BOOL) (flags & 128);
-                BOOL fixed = (BOOL) (flags & 256);
-                BOOL media = (BOOL) (flags & 512);
+//                BOOL unread = (BOOL) (flags & 1);
+//                BOOL outbox = (BOOL) (flags & 2);
+//                BOOL replied = (BOOL) (flags & 4);
+//                BOOL important = (BOOL) (flags & 8);
+//                BOOL chat = (BOOL) (flags & 16);
+//                BOOL friends = (BOOL) (flags & 32);
+//                BOOL spam = (BOOL) (flags & 64);
+//                BOOL deleted = (BOOL) (flags & 128);
+//                BOOL fixed = (BOOL) (flags & 256);
+//                BOOL media = (BOOL) (flags & 512);
 
                 for (id <VKLongPollListenerProtocol> observer in self.messagesObservers)
-                    [observer handleEvent];
+                    [observer handleEvent:[[VKMessageEvent alloc]init]];
                 NSLog(@"\tmessage event [code: %d]", eventType);
                 break;
             }
-            case 8:
+            case 8: {
+                VKUserStatusEvent *event = [[VKUserStatusEvent alloc] initWithUserId:[NSNumber numberWithInt:userId] online:YES];
                 for (id <VKLongPollListenerProtocol> observer in self.userStatusObservers)
-                    [observer handleEvent];
+                    [observer handleEvent:event];
                 NSLog(@"\t[%d] - came online", userId);
                 break;
-            case 9:
+            }
+            case 9: {
+                VKUserStatusEvent *event = [[VKUserStatusEvent alloc] initWithUserId:[NSNumber numberWithInt:userId] online:NO];
                 for (id <VKLongPollListenerProtocol> observer in self.userStatusObservers)
-                    [observer handleEvent];
+                    [observer handleEvent:event];
                 NSLog(@"\t[%d] - went offline", userId);
                 break;
+            }
             default:
                 NSLog(@"\tunhandled event [code: %d]", eventType);
         }

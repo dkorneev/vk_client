@@ -8,9 +8,10 @@
 #import "RestKit.h"
 
 @class VKLongPollInfoService;
+@class VKAbstractEvent;
 
 @protocol VKLongPollListenerProtocol <NSObject>
-- (void)handleEvent;
+- (void)handleEvent:(VKAbstractEvent *)event;
 @end;
 
 @interface VKLongPollService : NSObject <RKObjectLoaderDelegate>

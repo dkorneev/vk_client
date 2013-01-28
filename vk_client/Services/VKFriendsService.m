@@ -5,6 +5,7 @@
 
 #import "VKFriendsService.h"
 #import "VKFriendInfo.h"
+#import "VKConstants.h"
 
 @interface VKFriendsService ()
 @property(nonatomic, copy) void (^completionBlock)(NSArray *);
@@ -33,7 +34,7 @@
             @"access_token" : accessToken};
 
     self.loader = [[RKObjectManager sharedManager] loaderWithURL:
-            [RKURL URLWithBaseURL:[NSURL URLWithString:@"https://api.vk.com/method"]
+            [RKURL URLWithBaseURL:[NSURL URLWithString:kBaseUrlString]
                      resourcePath:@"/friends.get?"
                   queryParameters:params]];
 

@@ -3,6 +3,8 @@
 //
 
 #import "VKSendMessageService.h"
+#import "VKSendMessageResponse.h"
+#import "VKConstants.h"
 
 
 @interface VKSendMessageService ()
@@ -22,23 +24,20 @@
     return self;
 }
 
-- (void)sendMessage:(NSNumber *)uid chatId:(NSNumber *)chatId messageText:(NSString *)message {
+- (void)sendMessage:(NSNumber *)uid messageText:(NSString *)message {
     NSString *userId = [[NSUserDefaults standardUserDefaults] valueForKey:@"user_id"];
     NSString *accessToken = [[NSUserDefaults standardUserDefaults] valueForKey:@"access_token"];
     NSDictionary *params = @{
-            @"uid" : userId,
-            @"chat_id" : chatId.stringValue,
+            @"uid" : uid.stringValue,
             @"message" : message,
             @"access_token" : accessToken};
 
     self.loader = [[RKObjectManager sharedManager] loaderWithURL:
-            [RKURL URLWithBaseURL:[NSURL URLWithString:@"https://api.vk.com/method"]
+            [RKURL URLWithBaseURL:[NSURL URLWithString:kBaseUrlString]
                      resourcePath:@"/messages.send?"
                   queryParameters:params]];
 
-    [self.loader.mappingProvider setMapping:[RKObjectMapping mappingForClass:[NSString class]] forKeyPath:@"response"];
-//    RKObjectMapping *mapping = [RKObjectMapping mappingForClass:[NSString class]];
-//    [self.loader setObjectMapping:[RKObjectMapping mappingForClass:[NSString class]]];
+    [self.loader setObjectMapping:[VKSendMessageResponse mapping]];
     self.loader.delegate = self;
     [self.loader send];
 }

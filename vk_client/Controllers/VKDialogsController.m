@@ -30,19 +30,20 @@
     if (self) {
         self.navigationItem.titleView = [VKUtils createNavigationItemTitle:@"Диалоги"];
 
-        UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"Назад"
-                                                                 style:UIBarButtonItemStyleBordered
-                                                                target:self
-                                                                action:@selector(back)];
-        self.navigationItem.backBarButtonItem = item;
-        [self refreshData];
+//        UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"Назад"
+//                                                                 style:UIBarButtonItemStyleBordered
+//                                                                target:self
+//                                                                action:@selector(back)];
+//        [item setBackButtonBackgroundImage:[UIImage imageNamed:@"back-button.png"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
 
         [[VKLongPollService getSharedInstance] addMessagesEventObserver:self];
+        [[VKLongPollService getSharedInstance] addUserStatusEventObserver:self];
+        [self refreshData];
     }
     return self;
 }
 
-- (void)handleEvent {
+- (void)handleEvent:(VKAbstractEvent *)event {
     NSLog(@"VKDialogsController - handle event");
     [self refreshData];
 }
@@ -52,36 +53,41 @@
 }
 
 - (void)back {
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)refreshData {
-    __weak VKDialogsController *weakSelf = self;
-    self.service = [[VKDialogsService alloc] initWithCompletionBlock:^(NSArray *array) {
+    if (!self.service) {
+        __weak VKDialogsController *weakSelf = self;
+        void (^completionBlock)(NSArray *) = ^(NSArray *array) {
 
-        // групповые диалоги пока не поддерживаются, поэтому их исключаем
-        NSMutableArray *notGroupDialogs = [NSMutableArray new];
-        for (VKDialogInfo *curInfo in array) {
-            if (![curInfo isGroupDialog])
-                [notGroupDialogs addObject:curInfo];
-        }
+            // групповые диалоги пока не поддерживаются, поэтому их исключаем
+            NSMutableArray *notGroupDialogs = [NSMutableArray new];
+            for (VKDialogInfo *curInfo in array) {
+                if (![curInfo isGroupDialog])
+                    [notGroupDialogs addObject:curInfo];
+            }
 
-        weakSelf.dialogsArray = notGroupDialogs;
-        weakSelf.usersService = [[VKUsersService alloc] initWithCompletionBlock:^(NSDictionary *users) {
-            weakSelf.users = users;
-            weakSelf.reloading = NO;
-            [weakSelf.refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:weakSelf.tableView];
-            [weakSelf.tableView reloadData];
-        }];
+            weakSelf.dialogsArray = notGroupDialogs;
+            weakSelf.usersService = [[VKUsersService alloc] initWithCompletionBlock:^(NSDictionary *users) {
+                weakSelf.users = users;
+                weakSelf.reloading = NO;
+                [weakSelf.refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:weakSelf.tableView];
+                [weakSelf.tableView reloadData];
+            }];
 
-        // для того чтобы отображать инфу о пользователях
-        // которые не являются друзьями но учавствовали в диалоге
-        // извлекаем их id из диалогов и запрашиваем инфу о них
-        [weakSelf.usersService getUsersInfo:[weakSelf friendsIdsString:weakSelf.dialogsArray]];
-    }];
+            // для того чтобы отображать инфу о пользователях
+            // которые не являются друзьями но учавствовали в диалоге
+            // извлекаем их id из диалогов и запрашиваем инфу о них
+            [weakSelf.usersService getUsersInfo:[weakSelf friendsIdsString:weakSelf.dialogsArray]];
+        };
+        self.service = [[VKDialogsService alloc] initWithCompletionBlock:completionBlock];
+    }
 
-    _reloading = YES;
-    [self.service getDialogs];
+    if (![self.service isLoading]) {
+        _reloading = YES;
+        [self.service getDialogs];
+    }
 }
 
 // достает id собеседников из массива дилогов
@@ -129,8 +135,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     VKDialogInfo *dialogInfo = [_dialogsArray objectAtIndex:(NSUInteger) indexPath.row];
     VKFriendInfo *friendInfo = [self.users valueForKey:dialogInfo.userId.stringValue];
-    VKConversationController *conversation = [[VKConversationController alloc] init:friendInfo];
-    conversation.hidesBottomBarWhenPushed = YES;
+    VKConversationController *conversation = [[VKConversationController alloc] initWithFriendInfo:friendInfo];
     [self.navigationController pushViewController:conversation animated:YES];
 }
 

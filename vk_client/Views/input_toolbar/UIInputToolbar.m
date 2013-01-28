@@ -87,7 +87,7 @@
 -(id)initWithFrame:(CGRect)frame
 {
     if ((self = [super initWithFrame:frame])) {
-        [self setupToolbar:@"Send"];
+        [self setupToolbar:@"Отпр."];
     }
     return self;
 }
@@ -95,7 +95,7 @@
 -(id)init
 {
     if ((self = [super init])) {
-        [self setupToolbar:@"Send"];
+        [self setupToolbar:@"Отпр."];
     }
     return self;
 }

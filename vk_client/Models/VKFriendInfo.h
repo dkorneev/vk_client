@@ -10,7 +10,7 @@
 
 @interface VKFriendInfo : NSObject
 
-@property (nonatomic, strong) NSString *userId;
+@property (nonatomic, strong) NSNumber *userId;
 @property (nonatomic, strong) NSString *firstName;
 @property (nonatomic, strong) NSString *lastName;
 @property (nonatomic, strong) NSString *nickname;

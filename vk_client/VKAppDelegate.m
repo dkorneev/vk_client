@@ -11,14 +11,13 @@
 #import "VKWebViewController.h"
 #import "RestKit.h"
 #import "RKJSONParserJSONKit.h"
+#import "VKConstants.h"
 
 @implementation VKAppDelegate
 
 - (void)configureRestKit {
-    [RKObjectManager managerWithBaseURLString:@"https://api.vk.com/method"];
+    [RKObjectManager managerWithBaseURLString:kBaseUrlString];
     [RKObjectManager sharedManager].requestQueue.showsNetworkActivityIndicatorWhenBusy = YES;
-    RKParserRegistry *registry = [RKParserRegistry sharedRegistry];
-
     [[RKParserRegistry sharedRegistry] setParserClass:[RKJSONParserJSONKit class] forMIMEType:@"text/javascript"];
 }
 

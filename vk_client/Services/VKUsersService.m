@@ -6,6 +6,7 @@
 
 #import "VKUsersService.h"
 #import "VKFriendInfo.h"
+#import "VKConstants.h"
 
 @interface VKUsersService()
 @property(nonatomic, copy) void (^completionBlock)(NSDictionary  *);
@@ -33,7 +34,7 @@
 
     RKObjectLoader *loader = nil;
     loader = [[RKObjectManager sharedManager] loaderWithURL:
-            [RKURL URLWithBaseURL:[NSURL URLWithString:@"https://api.vk.com/method"]
+            [RKURL URLWithBaseURL:[NSURL URLWithString:kBaseUrlString]
                      resourcePath:@"/users.get?"
                   queryParameters:params]];
 
@@ -53,7 +54,7 @@
     NSMutableDictionary *ret = [[NSMutableDictionary alloc] init];
 
     for (VKFriendInfo *curUser in objects)
-        [ret setObject:curUser forKey:curUser.userId];
+        [ret setObject:curUser forKey:curUser.userId.stringValue];
 
     if (_completionBlock)
         _completionBlock(ret);

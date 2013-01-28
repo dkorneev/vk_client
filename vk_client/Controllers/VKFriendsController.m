@@ -9,6 +9,7 @@
 #import "VKFriendInfo.h"
 #import "VKFriendsListCell.h"
 #import "UIViewAdditions.h"
+#import "VKConversationController.h"
 
 
 @interface VKFriendsController ()
@@ -31,26 +32,27 @@
         self.orderedKeys = @[];
         self.friendsMap = [[NSDictionary alloc] init];
         self.onlyOnlineFriends = NO;
-
-        UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"Все", @"Онлайн"]];
-        segmentedControl.backgroundColor = [UIColor clearColor];
-        segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
-        segmentedControl.selectedSegmentIndex = 0;
-        [segmentedControl setWidth:210];
-        [segmentedControl setBackgroundImage:[UIImage imageNamed:@"Header_Button.png"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-
-        [segmentedControl setDividerImage:[UIImage imageNamed:@"devider.png"] forLeftSegmentState:UIControlStateSelected
-                        rightSegmentState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-        [segmentedControl setDividerImage:[UIImage imageNamed:@"devider.png"] forLeftSegmentState:UIControlStateNormal
-                        rightSegmentState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
-        [segmentedControl addTarget:self action:@selector(changeList:) forControlEvents:UIControlEventValueChanged];
-        self.navigationItem.titleView = segmentedControl;
-
+        self.navigationItem.titleView = [self createNavBarButtons];
         [self performSelector:@selector(refreshData) withObject:nil afterDelay:0.5];
-
         [[VKLongPollService getSharedInstance] addUserStatusEventObserver:self];
     }
     return self;
+}
+
+- (UISegmentedControl *)createNavBarButtons {
+    UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"Все", @"Онлайн"]];
+    segmentedControl.backgroundColor = [UIColor clearColor];
+    segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
+    segmentedControl.selectedSegmentIndex = 0;
+    [segmentedControl setWidth:210];
+    [segmentedControl setBackgroundImage:[UIImage imageNamed:@"Header_Button.png"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+
+    [segmentedControl setDividerImage:[UIImage imageNamed:@"devider.png"] forLeftSegmentState:UIControlStateSelected
+                    rightSegmentState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    [segmentedControl setDividerImage:[UIImage imageNamed:@"devider.png"] forLeftSegmentState:UIControlStateNormal
+                    rightSegmentState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
+    [segmentedControl addTarget:self action:@selector(changeList:) forControlEvents:UIControlEventValueChanged];
+    return segmentedControl;
 }
 
 - (void)changeList:(UISegmentedControl *)segmentControl {
@@ -58,7 +60,7 @@
     [self.tableView reloadData];
 }
 
-- (void)handleEvent {
+- (void)handleEvent:(VKAbstractEvent *)event {
     NSLog(@"VKFriendsController - handle event");
     [self refreshData];
 }
@@ -151,6 +153,18 @@
 
 #pragma mark -
 #pragma mark UITableViewDelegate, UITableViewDataSource
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSString *key = [self.orderedKeys objectAtIndex:(NSUInteger)indexPath.section];
+    NSArray *valuesArray = self.onlyOnlineFriends ? self.onlineFriends : (NSArray *)[self.friendsMap valueForKey:key];
+    if (indexPath.row > valuesArray.count - 1) {
+        return;
+    } else {
+        VKFriendInfo *friendInfo = [valuesArray objectAtIndex:(NSUInteger)indexPath.row];
+        VKConversationController *conversationController = [[VKConversationController alloc] initWithFriendInfo:friendInfo];
+        [self.navigationController pushViewController:conversationController animated:YES];
+    }
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *key = [self.orderedKeys objectAtIndex:(NSUInteger)indexPath.section];
