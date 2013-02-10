@@ -6,6 +6,9 @@
 
 #import <Foundation/Foundation.h>
 
+@class NINetworkImageView;
+@class VKUsersService;
+
 
 @interface VKSettingsController : UIViewController
 @end

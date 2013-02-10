@@ -10,8 +10,6 @@
 
 @interface VKUsersService : NSObject <RKObjectLoaderDelegate>
 
-- (id)initWithCompletionBlock:(void (^)(NSDictionary *))arg;
-
-- (void)getUsersInfo:(NSString *)usersIds;
+- (void)getUsersInfo:(NSString *)usersIds completionBlock:(void (^)(NSDictionary *))arg;
 
 @end

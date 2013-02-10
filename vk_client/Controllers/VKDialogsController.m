@@ -3,7 +3,6 @@
 //
 
 
-
 #import "VKDialogsController.h"
 #import "VKFriendsService.h"
 #import "VKDialogsService.h"
@@ -29,13 +28,6 @@
     self = [super init];
     if (self) {
         self.navigationItem.titleView = [VKUtils createNavigationItemTitle:@"Диалоги"];
-
-//        UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"Назад"
-//                                                                 style:UIBarButtonItemStyleBordered
-//                                                                target:self
-//                                                                action:@selector(back)];
-//        [item setBackButtonBackgroundImage:[UIImage imageNamed:@"back-button.png"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-
         [[VKLongPollService getSharedInstance] addMessagesEventObserver:self];
         [[VKLongPollService getSharedInstance] addUserStatusEventObserver:self];
         [self refreshData];
@@ -69,17 +61,17 @@
             }
 
             weakSelf.dialogsArray = notGroupDialogs;
-            weakSelf.usersService = [[VKUsersService alloc] initWithCompletionBlock:^(NSDictionary *users) {
+            weakSelf.usersService = [[VKUsersService alloc] init];
+
+            // для того чтобы отображать инфу о пользователях
+            // которые не являются друзьями но учавствовали в диалоге
+            // извлекаем их id из диалогов и запрашиваем инфу о них
+            [weakSelf.usersService getUsersInfo:[weakSelf friendsIdsString:weakSelf.dialogsArray] completionBlock:^(NSDictionary *users) {
                 weakSelf.users = users;
                 weakSelf.reloading = NO;
                 [weakSelf.refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:weakSelf.tableView];
                 [weakSelf.tableView reloadData];
             }];
-
-            // для того чтобы отображать инфу о пользователях
-            // которые не являются друзьями но учавствовали в диалоге
-            // извлекаем их id из диалогов и запрашиваем инфу о них
-            [weakSelf.usersService getUsersInfo:[weakSelf friendsIdsString:weakSelf.dialogsArray]];
         };
         self.service = [[VKDialogsService alloc] initWithCompletionBlock:completionBlock];
     }

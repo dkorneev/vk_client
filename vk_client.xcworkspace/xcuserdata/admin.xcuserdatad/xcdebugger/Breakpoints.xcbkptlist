@@ -26,8 +26,8 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "20"
          endingLineNumber = "20"
-         landmarkName = "-initWithCompletionBlock:"
-         landmarkType = "5">
+         landmarkName = "@implementation VKDialogsService"
+         landmarkType = "3">
       </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

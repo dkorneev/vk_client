@@ -14,18 +14,11 @@
 
 @implementation VKUsersService
 
-- (id)initWithCompletionBlock: (void(^)(NSDictionary *))arg {
-    self = [super init];
-    if (self) {
-        self.completionBlock = arg;
-    }
-    return self;
-}
-
 // принимает параметр usersIds - строку с id пользователей
 // (перечислены через через запятую), для которых нужна информация
 // пример: "123,234,456,654"
-- (void)getUsersInfo:(NSString *)usersIds {
+- (void)getUsersInfo:(NSString *)usersIds completionBlock: (void(^)(NSDictionary *))arg {
+    self.completionBlock = arg;
     NSDictionary *params = [NSDictionary dictionaryWithObjects:@[
             usersIds,
             @"uid,first_name,last_name,photo,online",
