@@ -21,29 +21,20 @@
 @property(nonatomic, strong) NSMutableArray *userStatusObservers;
 @property(nonatomic, strong) VKLongPollInfoService *longPollInfoService;
 @property(nonatomic, strong) RKObjectLoader *loader;
+@property(nonatomic, strong) id <VKLongPollDelegateProtocol> delegate;
+
 @end
 
 @implementation VKLongPollService
 
-static VKLongPollService *_sharedInstance = nil;
-
-// возвращает актуальный объект
-+ (VKLongPollService *)getSharedInstance {
-    if (!_sharedInstance)
-        NSLog(@"Something is gone wrong! Asking for nil VKLongPollService-object.");
-    return _sharedInstance;
-}
-
-- (id)init {
+- (id)initWithDelegate:(id <VKLongPollDelegateProtocol>)delegate; {
     self = [super init];
     if (self) {
+        self.delegate = delegate;
         self.breakFlag = NO;
         self.messagesObservers = [NSMutableArray new];
         self.userStatusObservers = [NSMutableArray new];
     }
-    if (_sharedInstance)
-        [_sharedInstance stop];
-    _sharedInstance = self;
     return self;
 }
 
@@ -51,7 +42,7 @@ static VKLongPollService *_sharedInstance = nil;
     self.breakFlag = YES;
 }
 
-- (void)start:(void (^)())completionBlock {
+- (void)start {
     NSLog(@"VKLongPollService was launched!");
     self.longPollInfoService = [[VKLongPollInfoService alloc] initWithCompletionBlock:^(NSObject *object) {
         VKLongPollInfo *info = (VKLongPollInfo *) object;
@@ -63,15 +54,13 @@ static VKLongPollService *_sharedInstance = nil;
         NSLog(@"LONG_POLL_SERVER: %@", info.server);
         NSLog(@"LONG_POLL_TS: %@", info.ts);
 
-        completionBlock();
-
         [self sendLongPollRequest];
     }];
     [self.longPollInfoService getLongPoolServerSettings];
 }
 
 - (void)restart {
-    [self start:^{}];
+    [self start];
 }
 
 - (void)sendLongPollRequest {
@@ -106,78 +95,11 @@ static VKLongPollService *_sharedInstance = nil;
 
     if (responseObject.updates.count) {
         NSLog(@"ts: %@, updates count: %d", responseObject.ts, responseObject.updates.count);
-        [self notifyListeners:responseObject.updates];
+        [self.delegate handleResponseWithUpdates:responseObject.updates];
     }
 
     if (!self.breakFlag)
         [self sendLongPollRequest];
-}
-
-- (void)notifyListeners:(NSArray *)updates {
-    NSLog(@"notifyListeners");
-
-    for (NSArray *curUpdate in updates) {
-        unsigned eventType = ((NSNumber *) [curUpdate objectAtIndex:0]).unsignedIntValue;
-        NSInteger userId = -1 * ((NSNumber *) [curUpdate objectAtIndex:1]).integerValue;
-//        short flags = ((NSNumber *) [curUpdate objectAtIndex:2]).shortValue;
-        switch (eventType) {
-            case 1:
-            case 2:
-            case 3:
-                break;
-            case 4: {
-
-                // расшифровка установленных флагов
-//                BOOL unread = (BOOL) (flags & 1);
-//                BOOL outbox = (BOOL) (flags & 2);
-//                BOOL replied = (BOOL) (flags & 4);
-//                BOOL important = (BOOL) (flags & 8);
-//                BOOL chat = (BOOL) (flags & 16);
-//                BOOL friends = (BOOL) (flags & 32);
-//                BOOL spam = (BOOL) (flags & 64);
-//                BOOL deleted = (BOOL) (flags & 128);
-//                BOOL fixed = (BOOL) (flags & 256);
-//                BOOL media = (BOOL) (flags & 512);
-
-                for (id <VKLongPollListenerProtocol> observer in self.messagesObservers)
-                    [observer handleEvent:[[VKMessageEvent alloc]init]];
-                NSLog(@"\tmessage event [code: %d]", eventType);
-                break;
-            }
-            case 8: {
-                VKUserStatusEvent *event = [[VKUserStatusEvent alloc] initWithUserId:[NSNumber numberWithInt:userId] online:YES];
-                for (id <VKLongPollListenerProtocol> observer in self.userStatusObservers)
-                    [observer handleEvent:event];
-                NSLog(@"\t[%d] - came online", userId);
-                break;
-            }
-            case 9: {
-                VKUserStatusEvent *event = [[VKUserStatusEvent alloc] initWithUserId:[NSNumber numberWithInt:userId] online:NO];
-                for (id <VKLongPollListenerProtocol> observer in self.userStatusObservers)
-                    [observer handleEvent:event];
-                NSLog(@"\t[%d] - went offline", userId);
-                break;
-            }
-            default:
-                NSLog(@"\tunhandled event [code: %d]", eventType);
-        }
-    }
-}
-
-- (void)addMessagesEventObserver:(id <VKLongPollListenerProtocol>)object {
-    [self.messagesObservers addObject:object];
-}
-
-- (void)removeMessagesEventObserver:(id <VKLongPollListenerProtocol>)object {
-    [self.messagesObservers removeObject:object];
-}
-
-- (void)addUserStatusEventObserver:(id <VKLongPollListenerProtocol>)object {
-    [self.userStatusObservers addObject:object];
-}
-
-- (void)removeUserStatusEventObserver:(id <VKLongPollListenerProtocol>)object {
-    [self.userStatusObservers removeObject:object];
 }
 
 @end

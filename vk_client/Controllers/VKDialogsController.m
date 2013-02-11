@@ -4,22 +4,15 @@
 
 
 #import "VKDialogsController.h"
-#import "VKFriendsService.h"
-#import "VKDialogsService.h"
 #import "VKDialogsListCell.h"
 #import "VKFriendInfo.h"
 #import "VKDialogInfo.h"
-#import "VKUsersService.h"
 #import "VKConversationController.h"
 #import "VKUtils.h"
-#import "VKLongPollService.h"
-
 
 @interface VKDialogsController ()
-@property(nonatomic, strong) VKDialogsService *service;
 @property(nonatomic, strong) NSArray *dialogsArray;
 @property(nonatomic, strong) NSDictionary *users;
-@property(nonatomic, strong) VKUsersService *usersService;
 @end
 
 @implementation VKDialogsController
@@ -28,8 +21,7 @@
     self = [super init];
     if (self) {
         self.navigationItem.titleView = [VKUtils createNavigationItemTitle:@"Диалоги"];
-        [[VKLongPollService getSharedInstance] addMessagesEventObserver:self];
-        [[VKLongPollService getSharedInstance] addUserStatusEventObserver:self];
+        [[VKDataController instance] addObserver:self];
         [self refreshData];
     }
     return self;
@@ -37,11 +29,17 @@
 
 - (void)handleEvent:(VKAbstractEvent *)event {
     NSLog(@"VKDialogsController - handle event");
-    [self refreshData];
-}
+    [self.refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tableView];
 
-- (void)dealloc {
-    [[VKLongPollService getSharedInstance] removeMessagesEventObserver:self];
+    self.dialogsArray = [[VKDataController instance] getDialogs];
+
+    NSArray *friends = [[VKDataController instance] getFriends];
+    NSMutableDictionary *friendsDict = [[NSMutableDictionary alloc] init];
+    for (VKFriendInfo *curFriend in friends)
+        [friendsDict setObject:curFriend forKey:curFriend.userId.stringValue];
+    self.users = friendsDict;
+    if ([self isViewLoaded])
+        [self.tableView reloadData];
 }
 
 - (void)back {
@@ -49,60 +47,16 @@
 }
 
 - (void)refreshData {
-    if (!self.service) {
-        __weak VKDialogsController *weakSelf = self;
-        void (^completionBlock)(NSArray *) = ^(NSArray *array) {
-
-            // групповые диалоги пока не поддерживаются, поэтому их исключаем
-            NSMutableArray *notGroupDialogs = [NSMutableArray new];
-            for (VKDialogInfo *curInfo in array) {
-                if (![curInfo isGroupDialog])
-                    [notGroupDialogs addObject:curInfo];
-            }
-
-            weakSelf.dialogsArray = notGroupDialogs;
-            weakSelf.usersService = [[VKUsersService alloc] init];
-
-            // для того чтобы отображать инфу о пользователях
-            // которые не являются друзьями но учавствовали в диалоге
-            // извлекаем их id из диалогов и запрашиваем инфу о них
-            [weakSelf.usersService getUsersInfo:[weakSelf friendsIdsString:weakSelf.dialogsArray] completionBlock:^(NSDictionary *users) {
-                weakSelf.users = users;
-                weakSelf.reloading = NO;
-                [weakSelf.refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:weakSelf.tableView];
-                [weakSelf.tableView reloadData];
-            }];
-        };
-        self.service = [[VKDialogsService alloc] initWithCompletionBlock:completionBlock];
-    }
-
-    if (![self.service isLoading]) {
-        _reloading = YES;
-        [self.service getDialogs];
-    }
-}
-
-// достает id собеседников из массива дилогов
-- (NSString *)friendsIdsString:(NSArray *)dialogsArray {
-    if (!dialogsArray || !dialogsArray.count)
-        return @"";
-
-    NSMutableArray *usersArray = [[NSMutableArray alloc] init];
-    for (VKDialogInfo *curDialog in dialogsArray) {
-        if (curDialog.chatActive)
-            [usersArray addObject:curDialog.chatActive];
-        if (curDialog.adminId)
-            [usersArray addObject:curDialog.adminId];
-        else if (curDialog.userId)
-            [usersArray addObject:curDialog.userId];
-    }
-    return [usersArray componentsJoinedByString:@","];
+    VKDataController *dataController = [VKDataController instance];
+    [dataController updateFriendsList];
+    [dataController updateDialogsList];
 }
 
 #pragma mark -
 #pragma mark EGORefreshTableHeaderDelegate Methods
 
 - (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView *)view {
+    NSLog(@"VKDialogsController - manual refresh");
     [self refreshData];
 }
 
@@ -132,6 +86,10 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+
+    if (!self.dialogsArray.count)
+        [self performSelector:@selector(refreshData) withObject:nil afterDelay:1];
+
     return self.dialogsArray.count;
 }
 

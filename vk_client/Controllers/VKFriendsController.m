@@ -3,24 +3,22 @@
 //
 
 
-
 #import "VKFriendsController.h"
-#import "VKFriendsService.h"
 #import "VKFriendInfo.h"
 #import "VKFriendsListCell.h"
 #import "UIViewAdditions.h"
 #import "VKConversationController.h"
+#import "VKAbstractEvent.h"
+#import "VKUserStatusEvent.h"
 
 
 @interface VKFriendsController ()
-@property(nonatomic, strong) VKFriendsService *service;
 @property(nonatomic, strong) NSArray *friends;
 @property(nonatomic, strong) NSArray *onlineFriends;
 @property(nonatomic, strong) NSArray *orderedKeys;
 @property(nonatomic, strong) NSDictionary *friendsMap;
 @property(nonatomic, strong) UITableView *tableView;
 @property(nonatomic) BOOL onlyOnlineFriends;
-
 @end
 
 @implementation VKFriendsController
@@ -33,11 +31,44 @@
         self.friendsMap = [[NSDictionary alloc] init];
         self.onlyOnlineFriends = NO;
         self.navigationItem.titleView = [self createNavBarButtons];
-        [self performSelector:@selector(refreshData) withObject:nil afterDelay:0.5];
-        [[VKLongPollService getSharedInstance] addUserStatusEventObserver:self];
+        [self refreshData];
+        [[VKDataController instance] addObserver:self];
     }
     return self;
 }
+
+- (void)changeList:(UISegmentedControl *)segmentControl {
+    self.onlyOnlineFriends = (segmentControl.selectedSegmentIndex == 1);
+    [self.tableView reloadData];
+}
+
+- (void)handleEvent:(VKAbstractEvent *)event {
+    if ([event class] != [VKUserStatusEvent class])
+        return;
+
+    NSLog(@"VKFriendsController - handle event");
+    [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tableView];
+
+    self.friends = [[VKDataController instance] getFriends];
+    self.friendsMap = [self createDictionaryFromFriendsArray:self.friends];
+    self.orderedKeys = [self createOrderedKeysFromDictionary:self.friendsMap];
+
+    NSIndexSet *indexSet = [self.friends indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+        VKFriendInfo *info = (VKFriendInfo *) obj;
+        return info.online.boolValue;
+    }];
+    self.onlineFriends = [self.friends objectsAtIndexes:indexSet];
+
+    if ([self isViewLoaded])
+        [self.tableView reloadData];
+}
+
+- (void)refreshData {
+    [[VKDataController instance] updateFriendsList];
+}
+
+#pragma mark -
+#pragma mark Utils
 
 - (UISegmentedControl *)createNavBarButtons {
     UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"Все", @"Онлайн"]];
@@ -55,56 +86,23 @@
     return segmentedControl;
 }
 
-- (void)changeList:(UISegmentedControl *)segmentControl {
-    self.onlyOnlineFriends = (segmentControl.selectedSegmentIndex == 1);
-    [self.tableView reloadData];
-}
+- (NSArray *)createOrderedKeysFromDictionary:(NSDictionary *)dictionary {
+    // получаем массив упорядоченных ключей (англ. символы вначале)
+    NSMutableArray *keys = [NSMutableArray arrayWithArray:
+            [[dictionary allKeys] sortedArrayUsingComparator:^(id obj1, id obj2) {
+                return [(NSString *) obj1 caseInsensitiveCompare:(NSString *) obj2];
+            }]];
 
-- (void)handleEvent:(VKAbstractEvent *)event {
-    NSLog(@"VKFriendsController - handle event");
-    [self refreshData];
-}
+    // переносим русские символы в начало
+    NSCharacterSet *lcRussianLetters = [NSCharacterSet characterSetWithCharactersInString:
+            @"абвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"];
+    NSIndexSet *ruKeysIndexes = [keys indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+        return [(NSString *) obj rangeOfCharacterFromSet:lcRussianLetters].location != NSNotFound;
+    }];
+    NSArray *ruKeys = [keys objectsAtIndexes:ruKeysIndexes];
+    [keys removeObjectsAtIndexes:ruKeysIndexes];
 
-- (void)dealloc {
-    [[VKLongPollService getSharedInstance] removeUserStatusEventObserver:self];
-}
-
-- (void)refreshData {
-    __weak VKFriendsController *weakSelf = self;
-    void (^completionBlock)(NSArray *) = ^(NSArray *array) {
-        weakSelf.friends = array;
-        NSIndexSet *indexSet = [array indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
-            VKFriendInfo *info = (VKFriendInfo *) obj;
-            return info.online.boolValue;
-        }];
-        weakSelf.onlineFriends = [array objectsAtIndexes:indexSet];
-        weakSelf.friendsMap = [weakSelf createDictionaryFromFriendsArray:array];
-
-        // получаем массив упорядоченных ключей (англ. символы вначале)
-        NSMutableArray *keys = [NSMutableArray arrayWithArray:
-                [[weakSelf.friendsMap allKeys] sortedArrayUsingComparator:^(id obj1, id obj2) {
-                    return [(NSString *) obj1 caseInsensitiveCompare:(NSString *) obj2];
-                }]];
-
-        // переносим русские символы в начало
-        NSCharacterSet *lcRussianLetters = [NSCharacterSet characterSetWithCharactersInString:
-                @"абвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"];
-        NSIndexSet *ruKeysIndexes = [keys indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
-            return [(NSString *) obj rangeOfCharacterFromSet:lcRussianLetters].location != NSNotFound;
-        }];
-        NSArray *ruKeys = [keys objectsAtIndexes:ruKeysIndexes];
-        [keys removeObjectsAtIndexes:ruKeysIndexes];
-        weakSelf.orderedKeys = [ruKeys arrayByAddingObjectsFromArray:keys];
-
-        _reloading = NO;
-        [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:weakSelf.tableView];
-        [weakSelf.tableView reloadData];
-    };
-    void (^errorBlock)() = ^{};
-
-    self.service = [[VKFriendsService alloc] initWithCompletionBlock:completionBlock errorBlock:errorBlock];
-    _reloading = YES;
-    [self.service getFriends];
+    return [ruKeys arrayByAddingObjectsFromArray:keys];
 }
 
 // Функция возвращает словарь, где ключ - первая буква фаимилии (lastName),
@@ -144,31 +142,24 @@
     return ret;
 }
 
-- (void)loadView {
-    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320, 460)];
-    tableView.delegate = self;
-    tableView.dataSource = self;
-    self.view = self.tableView = tableView;
-}
-
 #pragma mark -
 #pragma mark UITableViewDelegate, UITableViewDataSource
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *key = [self.orderedKeys objectAtIndex:(NSUInteger)indexPath.section];
-    NSArray *valuesArray = self.onlyOnlineFriends ? self.onlineFriends : (NSArray *)[self.friendsMap valueForKey:key];
+    NSString *key = [self.orderedKeys objectAtIndex:(NSUInteger) indexPath.section];
+    NSArray *valuesArray = self.onlyOnlineFriends ? self.onlineFriends : (NSArray *) [self.friendsMap valueForKey:key];
     if (indexPath.row > valuesArray.count - 1) {
         return;
     } else {
-        VKFriendInfo *friendInfo = [valuesArray objectAtIndex:(NSUInteger)indexPath.row];
+        VKFriendInfo *friendInfo = [valuesArray objectAtIndex:(NSUInteger) indexPath.row];
         VKConversationController *conversationController = [[VKConversationController alloc] initWithFriendInfo:friendInfo];
         [self.navigationController pushViewController:conversationController animated:YES];
     }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *key = [self.orderedKeys objectAtIndex:(NSUInteger)indexPath.section];
-    NSArray *valuesArray = self.onlyOnlineFriends ? self.onlineFriends : (NSArray *)[self.friendsMap valueForKey:key];
+    NSString *key = [self.orderedKeys objectAtIndex:(NSUInteger) indexPath.section];
+    NSArray *valuesArray = self.onlyOnlineFriends ? self.onlineFriends : (NSArray *) [self.friendsMap valueForKey:key];
 
     if (indexPath.row > valuesArray.count - 1) {
         return [[UITableViewCell alloc] init];
@@ -177,7 +168,7 @@
         VKFriendsListCell *cell = [tableView dequeueReusableCellWithIdentifier:[VKFriendsListCell cellIdentifier]];
         if (!cell)
             cell = [[VKFriendsListCell alloc] init];
-        VKFriendInfo *friendInfo = [valuesArray objectAtIndex:(NSUInteger)indexPath.row];
+        VKFriendInfo *friendInfo = [valuesArray objectAtIndex:(NSUInteger) indexPath.row];
         [cell fillByFriendsInfo:friendInfo shiftMark:self.onlyOnlineFriends];
         return cell;
     }
@@ -194,12 +185,15 @@
 
 // количество ячеек в секции
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSString *key = [self.orderedKeys objectAtIndex:(NSUInteger)section];
-    return self.onlyOnlineFriends ? self.onlineFriends.count : ((NSArray *)[self.friendsMap valueForKey:key]).count;
+    NSString *key = [self.orderedKeys objectAtIndex:(NSUInteger) section];
+    NSInteger ret = self.onlyOnlineFriends ? self.onlineFriends.count : ((NSArray *) [self.friendsMap valueForKey:key]).count;
+    if (!ret)
+        [self performSelector:@selector(refreshData) withObject:nil afterDelay:1];
+    return ret;
 }
 
 - (NSString *)tableView:(UITableView *)aTableView titleForHeaderInSection:(NSInteger)section {
-    return self.onlyOnlineFriends ? nil : [self.orderedKeys objectAtIndex:(NSUInteger)section];
+    return self.onlyOnlineFriends ? nil : [self.orderedKeys objectAtIndex:(NSUInteger) section];
 }
 
 // массив заголовков секции
@@ -214,8 +208,8 @@
 #pragma mark -
 #pragma mark EGORefreshTableHeaderDelegate Methods
 
-- (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view {
-    NSLog(@"egoRefreshTableHeaderDidTriggerRefresh");
+- (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView *)view {
+    NSLog(@"VKFriendsController - manual refresh");
     [self refreshData];
 }
 

@@ -7,9 +7,10 @@
 #import <Foundation/Foundation.h>
 #import "VKPullRefreshTableViewController.h"
 #import "VKLongPollService.h"
+#import "VKDataController.h"
 
 @class VKFriendsService;
 
 
-@interface VKFriendsController : VKPullRefreshTableViewController <VKLongPollListenerProtocol>
+@interface VKFriendsController : VKPullRefreshTableViewController <VKDataObserverProtocol>
 @end

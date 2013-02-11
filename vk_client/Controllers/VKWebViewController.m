@@ -44,8 +44,9 @@
             NSLog(@"USER_ID: %@", [[NSUserDefaults standardUserDefaults] valueForKey:@"user_id"]);
 
             // запускаем  longPoll-service
-            VKLongPollService *longPollService = [ [VKLongPollService alloc] init];
-            [longPollService start:^{ [self showTabBar]; }];
+//            VKLongPollService *longPollService = [ [VKLongPollService alloc] init];
+//            [longPollService start:^{ [self showTabBar]; }];
+            [self showTabBar];
         }
     }
     return ([request.URL.host isEqualToString:@"oauth.vk.com"] || [request.URL.host isEqualToString:@"login.vk.com"]);
@@ -77,6 +78,7 @@
     UITabBarController *mainTabBar = [[UITabBarController alloc] init];
     [mainTabBar setViewControllers:@[
             friendsNav, dialogsNav, settingsNav]];
+
     [self.navigationController pushViewController:mainTabBar animated:YES];
 }
 

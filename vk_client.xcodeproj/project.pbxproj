@@ -64,6 +64,7 @@
 		5860330B3C1269964B8EB279 /* VKFriendsListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 58603FB7F86142EACD43DA26 /* VKFriendsListCell.m */; };
 		5860330F13E136C60E0893D3 /* typingSomeone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 586034C5BA12F74E22E9FCCC /* typingSomeone@2x.png */; };
 		5860337EE3F5525D9DA470CF /* blueArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58603E7F074BEF3BB786015C /* blueArrow@2x.png */; };
+		586033954D2DAF062CB639D4 /* VKDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 586034C4912A340207C9C88E /* VKDataController.m */; };
 		586033A4DDD8C518F99605D5 /* Refresh_Down.png in Resources */ = {isa = PBXBuildFile; fileRef = 58603E542FBE0A442A7CC800 /* Refresh_Down.png */; };
 		586033A9DCCB019F6788C1CB /* DockSettings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 586032C26320960A352FEB2B /* DockSettings@2x.png */; };
 		586033B0700D52B2ECFA0EA9 /* Sent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58603C9CCE65D701D7461DEA /* Sent@2x.png */; };
@@ -261,6 +262,7 @@
 		5860347574CA36067C246983 /* VKAudioAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VKAudioAttachment.m; sourceTree = "<group>"; };
 		586034792BF7CCFBF9BDE586 /* VKUsersService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VKUsersService.h; sourceTree = "<group>"; };
 		586034B9F473591F92F15368 /* textbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = textbg.png; sourceTree = "<group>"; };
+		586034C4912A340207C9C88E /* VKDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VKDataController.m; sourceTree = "<group>"; };
 		586034C5BA12F74E22E9FCCC /* typingSomeone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "typingSomeone@2x.png"; sourceTree = "<group>"; };
 		586034D717D14783140E269D /* toolbarbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toolbarbg.png; sourceTree = "<group>"; };
 		586034E2EE975F260D3D3CEC /* back-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back-button@2x.png"; sourceTree = "<group>"; };
@@ -356,6 +358,7 @@
 		58603B68ADC398540FAB56B8 /* whiteArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteArrow.png; sourceTree = "<group>"; };
 		58603BB1C4142599DB8F4588 /* VKSendMessageService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VKSendMessageService.h; sourceTree = "<group>"; };
 		58603BC8E1B1A410875A38E4 /* Header_Avatar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Header_Avatar@2x.png"; sourceTree = "<group>"; };
+		58603BFBAF9E8D3BDA73373D /* VKDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VKDataController.h; sourceTree = "<group>"; };
 		58603C0EA70159B2458370ED /* UIBubbleTypingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIBubbleTypingTableViewCell.h; sourceTree = "<group>"; };
 		58603C13CCC8F8BA0582DA4C /* AttachGallery@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AttachGallery@2x.png"; sourceTree = "<group>"; };
 		58603C1B997CDD9D690D5867 /* grayArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grayArrow@2x.png"; sourceTree = "<group>"; };
@@ -579,6 +582,8 @@
 				586038102BC81B374632C2F5 /* VKPullRefreshTableViewController.h */,
 				58603E514543B015D578CD7F /* VKConversationController.m */,
 				58603200557A50359CCA38FE /* VKConversationController.h */,
+				586034C4912A340207C9C88E /* VKDataController.m */,
+				58603BFBAF9E8D3BDA73373D /* VKDataController.h */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1105,6 +1110,7 @@
 				58603031B80B2400A5250B81 /* VKAbstractEvent.m in Sources */,
 				58603446521D285E2445F278 /* VKMessageEvent.m in Sources */,
 				58603938864B2B442D81DDA0 /* VKUserStatusEvent.m in Sources */,
+				586033954D2DAF062CB639D4 /* VKDataController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -43,40 +43,40 @@
 - (id)initWithFriendInfo:(VKFriendInfo *)friendsInfo {
     self = [super init];
     if (self) {
-        self.hidesBottomBarWhenPushed = YES;
-        self.friendInfo = friendsInfo;
-        self.navigationItem.titleView = [VKUtils createNavigationItemTitle:friendsInfo.firstName];
-        self.navigationItem.leftBarButtonItem = [VKUtils createBarButton:@"Назад" target:self action:@selector(back)];
-
-        self.avatarView = [[VKNavBarAvatarView alloc] initWithFriendsInfo:friendsInfo];
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.avatarView];
-
-        [[VKLongPollService getSharedInstance] addMessagesEventObserver:self];
-        [[VKLongPollService getSharedInstance] addUserStatusEventObserver:self];
-        [self refresh];
+//        self.hidesBottomBarWhenPushed = YES;
+//        self.friendInfo = friendsInfo;
+//        self.navigationItem.titleView = [VKUtils createNavigationItemTitle:friendsInfo.firstName];
+//        self.navigationItem.leftBarButtonItem = [VKUtils createBarButton:@"Назад" target:self action:@selector(back)];
+//
+//        self.avatarView = [[VKNavBarAvatarView alloc] initWithFriendsInfo:friendsInfo];
+//        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.avatarView];
+//
+//        [[VKLongPollService getSharedInstance] addMessagesEventObserver:self];
+//        [[VKLongPollService getSharedInstance] addUserStatusEventObserver:self];
+//        [self refresh];
     }
     return self;
 }
 
 - (void)back {
-    [[VKLongPollService getSharedInstance] removeMessagesEventObserver:self];
+//    [[VKLongPollService getSharedInstance] removeMessagesEventObserver:self];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)refresh {
-    if (!self.service) {
-        // Создаем сервис
-        __weak VKConversationController *weakSelf = self;
-        void (^block)(NSArray *) = ^(NSArray *array) {
-            weakSelf.bubblesData = [weakSelf createBubblesWithData:array];
-            [weakSelf.bubbleView reloadData];
-            [weakSelf.bubbleView scrollToLastRow:YES];
-        };
-        self.service = [[VKDialogsService alloc] initWithCompletionBlock:block];
-    }
-
-    if (![self.service isLoading])
-        [self.service getDialogHistory:_friendInfo.userId];
+//    if (!self.service) {
+//        // Создаем сервис
+//        __weak VKConversationController *weakSelf = self;
+//        void (^block)(NSArray *) = ^(NSArray *array) {
+//            weakSelf.bubblesData = [weakSelf createBubblesWithData:array];
+//            [weakSelf.bubbleView reloadData];
+//            [weakSelf.bubbleView scrollToLastRow:YES];
+//        };
+//        self.service = [[VKDialogsService alloc] initWithCompletionBlock:block];
+//    }
+//
+//    if (![self.service isLoading])
+//        [self.service getDialogHistory:_friendInfo.userId];
 }
 
 - (void)handleEvent:(VKAbstractEvent *)event {

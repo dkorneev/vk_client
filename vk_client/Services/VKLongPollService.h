@@ -10,28 +10,16 @@
 @class VKLongPollInfoService;
 @class VKAbstractEvent;
 
-@protocol VKLongPollListenerProtocol <NSObject>
-- (void)handleEvent:(VKAbstractEvent *)event;
+@protocol VKLongPollDelegateProtocol <NSObject>
+- (void)handleResponseWithUpdates:(NSArray *)updates;
 @end;
 
 @interface VKLongPollService : NSObject <RKObjectLoaderDelegate>
 
-+ (VKLongPollService *)getSharedInstance;
-
-- (id)init;
+- (id)initWithDelegate:(id <VKLongPollDelegateProtocol>)delegate;
 
 - (void)stop;
 
-// completionBlock - вызывается после получения информации, необходимой для работы longPoll-механизма,
-// непосредственно перед запуском первого запроса
-- (void)start:(void (^)())completionBlock;
-
-- (void)addMessagesEventObserver:(id <VKLongPollListenerProtocol>)object;
-
-- (void)removeMessagesEventObserver:(id <VKLongPollListenerProtocol>)object;
-
-- (void)addUserStatusEventObserver:(id <VKLongPollListenerProtocol>)object;
-
-- (void)removeUserStatusEventObserver:(id <VKLongPollListenerProtocol>)object;
+- (void)start;
 
 @end

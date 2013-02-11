@@ -17,7 +17,7 @@
 @class VKDialogInfo;
 
 
-@interface VKConversationController : UIViewController <UIBubbleTableViewDataSource, UIInputToolbarDelegate, VKLongPollListenerProtocol>
+@interface VKConversationController : UIViewController <UIBubbleTableViewDataSource, UIInputToolbarDelegate>
 
 - (id)initWithFriendInfo:(VKFriendInfo *)friendsInfo;
 
