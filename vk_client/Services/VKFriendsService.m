@@ -37,12 +37,10 @@
             @"fields" : @"uid,first_name,last_name,nickname,photo",
             @"access_token" : accessToken};
 
-    if (!self.loader) {
-        self.loader = [[RKObjectManager sharedManager] loaderWithURL:
-                [RKURL URLWithBaseURL:[NSURL URLWithString:kBaseUrlString]
-                         resourcePath:@"/friends.get?"
-                      queryParameters:params]];
-    }
+    self.loader = [[RKObjectManager sharedManager] loaderWithURL:
+            [RKURL URLWithBaseURL:[NSURL URLWithString:kBaseUrlString]
+                     resourcePath:@"/friends.get?"
+                  queryParameters:params]];
 
     [self.loader.mappingProvider setMapping:[VKFriendInfo mapping] forKeyPath:@"response"];
     self.loader.delegate = self;

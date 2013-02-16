@@ -6,9 +6,13 @@
 #import "RestKit.h"
 
 
+@protocol VKSendMessageServiceProtocol
+    -(void)sendMessageSuccess:(NSNumber*)userId;
+@end;
+
 @interface VKSendMessageService : NSObject <RKObjectLoaderDelegate>
 
-- (id)initWithCompletionBlock:(void (^)())completionBlock errorBlock:(void (^)())errorBlock;
+- (id)initWithDelegate:(id <VKSendMessageServiceProtocol>)delegate;
 
 - (void)sendMessage:(NSNumber *)uid messageText:(NSString *)message;
 

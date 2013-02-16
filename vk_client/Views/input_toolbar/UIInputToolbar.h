@@ -30,6 +30,7 @@
 @optional
 -(void)inputButtonPressed:(NSString *)inputText;
 -(void)heightChanged:(float)diff;
+-(void)attachButtonPressed;
 @end
 
 @interface UIInputToolbar : UIToolbar <UIExpandingTextViewDelegate> 

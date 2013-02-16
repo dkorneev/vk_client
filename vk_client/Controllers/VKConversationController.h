@@ -9,15 +9,11 @@
 #import "UIInputToolbar.h"
 #import "VKLongPollService.h"
 #import "VKNavBarAvatarView.h"
+#import "VKDataController.h"
 
 @class VKFriendInfo;
-@class VKDialogsService;
-@class UIInputToolbar;
-@class VKSendMessageService;
-@class VKDialogInfo;
 
-
-@interface VKConversationController : UIViewController <UIBubbleTableViewDataSource, UIInputToolbarDelegate>
+@interface VKConversationController : UIViewController <UIBubbleTableViewDataSource, UIInputToolbarDelegate, VKDataObserverProtocol, UIActionSheetDelegate>
 
 - (id)initWithFriendInfo:(VKFriendInfo *)friendsInfo;
 

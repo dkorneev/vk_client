@@ -2,8 +2,6 @@
 // Created by dkorneev on 11/25/12.
 //
 
-
-
 #import <QuartzCore/QuartzCore.h>
 #import "VKSettingsController.h"
 #import "VKUtils.h"
@@ -11,15 +9,15 @@
 #import "VKUsersService.h"
 #import "VKFriendInfo.h"
 #import "UIViewAdditions.h"
-
+#import "VKWebViewController.h"
+#import "VKDialogsController.h"
+#import "VKAppDelegate.h"
 
 @interface VKSettingsController ()
 @property(nonatomic, strong) NINetworkImageView *avatar;
 @property(nonatomic, strong) UILabel *titleView;
 @property(nonatomic, strong) VKUsersService *userService;
 @property(nonatomic, strong) VKFriendInfo *info;
-
-
 @end
 
 @implementation VKSettingsController
@@ -50,23 +48,41 @@
     [_avatar setPathToNetworkImage:self.info.photo];
     [self.view addSubview:_avatar];
 
-    _titleView = [[UILabel alloc] init];
-    _titleView.backgroundColor = [UIColor clearColor];
-    _titleView.textColor = UIColorMakeRGB(52, 60, 75);
-    _titleView.font = [UIFont fontWithName:@"HelveticaNeueCyr-Medium" size:19];
-    _titleView.text = [NSString stringWithFormat:@"%@ %@", self.info.firstName, self.info.lastName];
-    [_titleView sizeToFit];
-    _titleView.centerY = _avatar.centerY;
-    _titleView.left = _avatar.right + 10;
-    [self.view addSubview:_avatar];
+    if (self.info && self.info.firstName) {
+        _titleView = [[UILabel alloc] init];
+        _titleView.backgroundColor = [UIColor clearColor];
+        _titleView.textColor = UIColorMakeRGB(52, 60, 75);
+        _titleView.font = [UIFont fontWithName:@"HelveticaNeueCyr-Medium" size:19];
+        _titleView.text = [NSString stringWithFormat:@"%@ %@", self.info.firstName, self.info.lastName];
+        [_titleView sizeToFit];
+        _titleView.centerY = _avatar.centerY;
+        _titleView.left = _avatar.right + 20;
+        [self.view addSubview:_titleView];
+    }
 
-    UIButton *logoutButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 300, 45)];
+    UIButton *logoutButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    logoutButton.backgroundColor = [UIColor whiteColor];
     [logoutButton setTitle:@"Выйти" forState:UIControlStateNormal];
     [logoutButton addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
+    logoutButton.top = _avatar.bottom + 20;
+    logoutButton.left = _avatar.left;
+    logoutButton.width = 300;
+    logoutButton.height = 45;
+    logoutButton.titleLabel.text = @"Выйти";
+    logoutButton.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:logoutButton];
 }
 
 - (void)logout {
-    NSLog(@"logout");
+    [VKWebViewController clearCookies];
+    [[VKDataController instance] reset];
+    VKWebViewController *webViewController = [[VKWebViewController alloc] initWithCompletionBlock:^{
+        [VKAppDelegate showTabBar:self.tabBarController.navigationController];
+    }];
+
+    // Старые контроллеры остаются! TODO: переделать
+    [self.tabBarController.navigationController pushViewController:webViewController animated:YES];
+    [webViewController loadRequest];
 }
 
 @end

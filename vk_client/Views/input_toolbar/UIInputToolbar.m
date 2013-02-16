@@ -43,6 +43,14 @@
     [self.textView clearText];
 }
 
+- (void)attachButtonPressed {
+    [self.textView resignFirstResponder];
+    [self.textView clearText];
+    if ([delegate respondsToSelector:@selector(attachButtonPressed)]) {
+        [delegate attachButtonPressed];
+    }
+}
+
 -(void)setupToolbar:(NSString *)buttonLabel
 {
     self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin;
@@ -70,13 +78,19 @@
     self.inputButton.enabled = NO;
 
     /* Create UIExpandingTextView input */
-    self.textView = [[[UIExpandingTextView alloc] initWithFrame:CGRectMake(7, 7, 236, 26)] autorelease];
+    self.textView = [[[UIExpandingTextView alloc] initWithFrame:CGRectMake(7 /*+ 35*/, 7, 236 /*- 35*/, 26)] autorelease];
     self.textView.internalTextView.scrollIndicatorInsets = UIEdgeInsetsMake(4.0f, 0.0f, 10.0f, 0.0f);
     self.textView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth;
     self.textView.delegate = self;
     [self.textView setMaximumNumberOfLines:4];
     [self addSubview:self.textView];
-    
+
+//    UIButton *sendPhotoButton = [[[UIButton alloc] initWithFrame:CGRectMake(7, 7, 28, 28)] autorelease];
+//    [sendPhotoButton setBackgroundImage:[UIImage imageNamed:@"AttachButton.png"] forState:UIControlStateNormal];
+//    [sendPhotoButton setBackgroundImage:[UIImage imageNamed:@"AttachButton_Pressed.png"] forState:UIControlStateHighlighted];
+//    [sendPhotoButton addTarget:self action:@selector(attachButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+//    [self addSubview:sendPhotoButton];
+
     /* Right align the toolbar button */
     UIBarButtonItem *flexItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
     

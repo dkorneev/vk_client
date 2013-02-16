@@ -6,7 +6,6 @@
 #import <QuartzCore/QuartzCore.h>
 #import "VKConversationController.h"
 #import "VKFriendInfo.h"
-#import "VKDialogsService.h"
 #import "VKDialogInfo.h"
 #import "UIBubbleTableView.h"
 #import "VKUtils.h"
@@ -15,7 +14,6 @@
 #import "VKAudioAttachment.h"
 #import "VKDocumentAttachment.h"
 #import "NINetworkImageView.h"
-#import "VKSendMessageService.h"
 #import "VKAbstractEvent.h"
 #import "VKMessageEvent.h"
 #import "VKUserStatusEvent.h"
@@ -29,10 +27,7 @@
 @property(nonatomic, strong) UIBubbleTableView *bubbleView;
 @property(nonatomic, strong) UIInputToolbar *inputToolbar;
 
-@property(nonatomic, strong) VKDialogsService *service;
-@property(nonatomic, strong) VKSendMessageService *messageService;
 @property(nonatomic, strong) VKNavBarAvatarView *avatarView;
-
 @end
 
 @implementation VKConversationController
@@ -43,50 +38,27 @@
 - (id)initWithFriendInfo:(VKFriendInfo *)friendsInfo {
     self = [super init];
     if (self) {
-//        self.hidesBottomBarWhenPushed = YES;
-//        self.friendInfo = friendsInfo;
-//        self.navigationItem.titleView = [VKUtils createNavigationItemTitle:friendsInfo.firstName];
-//        self.navigationItem.leftBarButtonItem = [VKUtils createBarButton:@"Назад" target:self action:@selector(back)];
-//
-//        self.avatarView = [[VKNavBarAvatarView alloc] initWithFriendsInfo:friendsInfo];
-//        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.avatarView];
-//
-//        [[VKLongPollService getSharedInstance] addMessagesEventObserver:self];
-//        [[VKLongPollService getSharedInstance] addUserStatusEventObserver:self];
-//        [self refresh];
+        self.hidesBottomBarWhenPushed = YES;
+        self.friendInfo = friendsInfo;
+        self.navigationItem.titleView = [VKUtils createNavigationItemTitle:friendsInfo.firstName];
+        self.navigationItem.leftBarButtonItem = [VKUtils createBarButton:@"Назад" target:self action:@selector(back)];
+
+        self.avatarView = [[VKNavBarAvatarView alloc] initWithFriendsInfo:friendsInfo];
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.avatarView];
+
+        [[VKDataController instance] addObserver:self];
+        [self refresh];
     }
     return self;
 }
 
 - (void)back {
-//    [[VKLongPollService getSharedInstance] removeMessagesEventObserver:self];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)refresh {
-//    if (!self.service) {
-//        // Создаем сервис
-//        __weak VKConversationController *weakSelf = self;
-//        void (^block)(NSArray *) = ^(NSArray *array) {
-//            weakSelf.bubblesData = [weakSelf createBubblesWithData:array];
-//            [weakSelf.bubbleView reloadData];
-//            [weakSelf.bubbleView scrollToLastRow:YES];
-//        };
-//        self.service = [[VKDialogsService alloc] initWithCompletionBlock:block];
-//    }
-//
-//    if (![self.service isLoading])
-//        [self.service getDialogHistory:_friendInfo.userId];
-}
-
-- (void)handleEvent:(VKAbstractEvent *)event {
-    if ([event class] == [VKMessageEvent class]) {
-        [self refresh];
-
-    } else if ([event class] == [VKUserStatusEvent class]) {
-        VKUserStatusEvent *userStatusEvent = (VKUserStatusEvent *)event;
-        [self.avatarView setOnline:userStatusEvent.online];
-    }
+    VKDataController *dataController = [VKDataController instance];
+    [dataController updateDialogHistory:self.friendInfo.userId];
 }
 
 - (NSArray *)createBubblesWithData:(NSArray *)data {
@@ -109,12 +81,12 @@
 
                 } else if ([curAttachment isKindOfClass:[VKAudioAttachment class]]) {
                     VKAudioAttachment *attachment = (VKAudioAttachment *) curAttachment;
-                    NSString *audioInfo = [NSString stringWithFormat:@"<аудиозапись: %@ - %@>", attachment.performer, attachment.title];
+                    NSString *audioInfo = [NSString stringWithFormat:@"[аудиозапись: %@ - %@]", attachment.performer, attachment.title];
                     [newBubbles addObject:[NSBubbleData dataWithText:audioInfo date:date type:bubbleType]];
 
                 } else if ([curAttachment isKindOfClass:[VKDocumentAttachment class]]) {
                     VKDocumentAttachment *attachment = (VKDocumentAttachment *) curAttachment;
-                    NSString *docInfo = [NSString stringWithFormat:@"<документ: %@.%@>", attachment.title, attachment.ext];
+                    NSString *docInfo = [NSString stringWithFormat:@"[документ: %@.%@]", attachment.title, attachment.ext];
                     [newBubbles addObject:[NSBubbleData dataWithText:docInfo date:date type:bubbleType]];
                 }
             }
@@ -163,6 +135,27 @@
     [self.view addSubview:_inputToolbar];
 }
 
+- (void)readFromModel {
+    VKDataController *dataController = [VKDataController instance];
+    self.bubblesData = [self createBubblesWithData:[dataController getDialogHistory:self.friendInfo.userId]];
+    [self.bubbleView reloadData];
+    [self.bubbleView scrollToLastRow:YES];
+}
+
+#pragma mark -
+#pragma mark VKDataObserverProtocol
+
+- (void)handleEvent:(VKAbstractEvent *)event {
+    if ([event class] == [VKMessageEvent class]) {
+        [self readFromModel];
+
+    } else if ([event class] == [VKUserStatusEvent class]) {
+        VKDataController *dataController = [VKDataController instance];
+        VKFriendInfo *friendInfo = [dataController getFriendInfo:self.friendInfo.userId];
+        [self.avatarView setOnline:friendInfo.online.boolValue];
+    }
+}
+
 #pragma mark -
 #pragma mark keyboard Notifications
 
@@ -184,15 +177,18 @@
     }];
 }
 
+- (void)attachButtonPressed {
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Отправить фото"
+                                delegate:self
+                       cancelButtonTitle:@"Отмена"
+                  destructiveButtonTitle:nil
+                       otherButtonTitles:@"Сделать снимок", @"Выбрать из галереи", nil];
+
+    [actionSheet showInView:self.view];
+}
+
 - (void)inputButtonPressed:(NSString *)inputText {
-    if (!self.messageService) {
-        void (^completionBLock)() = ^{
-            [self refresh];
-        };
-        void (^errorBlock)() = ^{};
-        self.messageService = [[VKSendMessageService alloc] initWithCompletionBlock:completionBLock errorBlock:errorBlock];
-    }
-    [self.messageService sendMessage:_friendInfo.userId messageText:inputText];
+    [[VKDataController instance] sendMessage:inputText to:_friendInfo.userId];
 }
 
 // обработка изменения высоты поля ввода
@@ -204,10 +200,30 @@
     }];
 }
 
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+//    UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+//    switch (buttonIndex) {
+//        case 0:
+//            if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
+//                if ([UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypePhotoLibrary]) {
+//
+//                }
+//            }
+//            break;
+//        case 1:
+//            break;
+//        default:
+//            break;
+//    }
+}
+
 #pragma mark -
 #pragma mark UIBubbleTableViewDataSource
 
 - (NSInteger)rowsForBubbleTable:(UIBubbleTableView *)tableView {
+    if (!self.bubblesData.count)
+        [self performSelector:@selector(readFromModel) withObject:nil afterDelay:1];
+
     return self.bubblesData.count;
 }
 

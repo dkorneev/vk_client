@@ -61,6 +61,7 @@
 		58603297652006CCDE09ECF7 /* AttachGallery@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58603C13CCC8F8BA0582DA4C /* AttachGallery@2x.png */; };
 		586032B55782E5769630CFF4 /* grayArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 58603627AEB4DA3941C4A3FA /* grayArrow.png */; };
 		586032B6A99A8C1689C96AC1 /* Refresh_Up@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 586031B40C590FF44F16EAD7 /* Refresh_Up@2x.png */; };
+		5860330960A7200EC8E6A515 /* VKWeakRefStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5860350D558C064A37E754CB /* VKWeakRefStorage.m */; };
 		5860330B3C1269964B8EB279 /* VKFriendsListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 58603FB7F86142EACD43DA26 /* VKFriendsListCell.m */; };
 		5860330F13E136C60E0893D3 /* typingSomeone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 586034C5BA12F74E22E9FCCC /* typingSomeone@2x.png */; };
 		5860337EE3F5525D9DA470CF /* blueArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58603E7F074BEF3BB786015C /* blueArrow@2x.png */; };
@@ -268,6 +269,7 @@
 		586034E2EE975F260D3D3CEC /* back-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back-button@2x.png"; sourceTree = "<group>"; };
 		586034E634BF501C59E6068E /* VKFriendsService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VKFriendsService.h; sourceTree = "<group>"; };
 		586034EFBAADD670CFE5E2A7 /* missingAvatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = missingAvatar.png; sourceTree = "<group>"; };
+		5860350D558C064A37E754CB /* VKWeakRefStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VKWeakRefStorage.m; sourceTree = "<group>"; };
 		586035502FDEF7FAC325BAAD /* DockMessages.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DockMessages.png; sourceTree = "<group>"; };
 		58603554368119486996E576 /* Online_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Online_selected@2x.png"; sourceTree = "<group>"; };
 		58603569019E8ED975E0A691 /* VKMessageEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VKMessageEvent.m; sourceTree = "<group>"; };
@@ -278,6 +280,7 @@
 		58603599DA57A269C1CAF9A6 /* AttachGallery_pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AttachGallery_pressed@2x.png"; sourceTree = "<group>"; };
 		5860359E404E2B84CF12649F /* Profile_Avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Profile_Avatar.png; sourceTree = "<group>"; };
 		586035BEEB7872D924DCB25E /* toolbarbg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "toolbarbg@2x.png"; sourceTree = "<group>"; };
+		586035C40DD60B87D8EEF9E6 /* VKWeakRefStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VKWeakRefStorage.h; sourceTree = "<group>"; };
 		586035CA8AFEB30A1142240F /* VKUserStatusEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VKUserStatusEvent.h; sourceTree = "<group>"; };
 		586035D7E0D56A481F762618 /* VKLoginButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VKLoginButton.h; sourceTree = "<group>"; };
 		586035E4E09EE07072DC97F0 /* NSBubbleData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSBubbleData.m; sourceTree = "<group>"; };
@@ -543,6 +546,8 @@
 				5860346D69216B4ED71004B8 /* VKLongPollResponse.h */,
 				58603A6B16245BAAF981BC3A /* VKSendMessageResponse.m */,
 				586031B8023B2C6926961B52 /* VKSendMessageResponse.h */,
+				5860350D558C064A37E754CB /* VKWeakRefStorage.m */,
+				586035C40DD60B87D8EEF9E6 /* VKWeakRefStorage.h */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1111,6 +1116,7 @@
 				58603446521D285E2445F278 /* VKMessageEvent.m in Sources */,
 				58603938864B2B442D81DDA0 /* VKUserStatusEvent.m in Sources */,
 				586033954D2DAF062CB639D4 /* VKDataController.m in Sources */,
+				5860330960A7200EC8E6A515 /* VKWeakRefStorage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

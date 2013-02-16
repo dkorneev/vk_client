@@ -9,22 +9,22 @@
 
 @interface VKSendMessageService ()
 @property(nonatomic, strong) RKObjectLoader *loader;
-@property(nonatomic, copy) void (^completionBlock)();
-@property(nonatomic, copy) void (^errorBlock)();
+@property(nonatomic, strong) id <VKSendMessageServiceProtocol> delegate;
+@property(nonatomic, strong) NSNumber *userId;
 @end
 
 @implementation VKSendMessageService
 
-- (id)initWithCompletionBlock:(void(^)())completionBlock errorBlock:(void(^)())errorBlock {
+- (id)initWithDelegate:(id <VKSendMessageServiceProtocol>)delegate{
     self = [super init];
     if (self) {
-        self.completionBlock = completionBlock;
-        self.errorBlock = errorBlock;
+        self.delegate = delegate;
     }
     return self;
 }
 
 - (void)sendMessage:(NSNumber *)uid messageText:(NSString *)message {
+    self.userId = uid;
     NSString *userId = [[NSUserDefaults standardUserDefaults] valueForKey:@"user_id"];
     NSString *accessToken = [[NSUserDefaults standardUserDefaults] valueForKey:@"access_token"];
     NSDictionary *params = @{
@@ -44,20 +44,19 @@
 
 
 - (void)objectLoader:(RKObjectLoader *)objectLoader didFailWithError:(NSError *)error {
-    if (self.errorBlock)
-        self.errorBlock();
+    NSLog(@"ERROR while sending message!");
 }
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObject:(id)object {
     NSLog(@"VKSendMessageService - didLoadObject");
-    if (self.completionBlock)
-        self.completionBlock();
+    if (_delegate)
+        [_delegate sendMessageSuccess:self.userId];
 }
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects {
     NSLog(@"VKSendMessageService - didLoadObjects");
-    if (self.completionBlock)
-        self.completionBlock();
+    if (_delegate)
+        [_delegate sendMessageSuccess:self.userId];
 }
 
 @end

@@ -10,6 +10,8 @@
 #import "VKAbstractEvent.h"
 #import "VKUserStatusEvent.h"
 #import "VKMessageEvent.h"
+#import "VKWeakRefStorage.h"
+#import "VKSendMessageService.h"
 
 
 @interface VKDataController ()
@@ -18,10 +20,12 @@
 @property(nonatomic, strong) VKLongPollService *longPollService;
 @property(nonatomic, strong) VKFriendsService *friendsService;
 @property(nonatomic, strong) VKDialogsService *dialogsService;
+@property(nonatomic, strong) VKDialogsService *dialogHistoryService;
+@property(nonatomic, strong) VKSendMessageService *messageService;
 
 @property(nonatomic, strong) NSArray *friends;
 @property(nonatomic, strong) NSArray *dialogs;
-@property(nonatomic, strong) NSArray *dialogHistory;
+@property(nonatomic, strong) NSMutableDictionary *dialogHistory;
 
 @end
 
@@ -36,12 +40,16 @@ static VKDataController *_dataController = nil;
     return _dataController;
 }
 
+- (void)reset {
+    [self.longPollService stop];
+}
+
 - (id)init {
     self = [super init];
     if (self) {
         self.friends = [NSArray new];
         self.dialogs = [NSArray new];
-        self.dialogHistory = [NSArray new];
+        self.dialogHistory = [NSMutableDictionary new];
         self.observers = [NSMutableArray new];
         self.longPollService = [[VKLongPollService alloc] initWithDelegate:self];
         [self.longPollService start];
@@ -78,6 +86,34 @@ static VKDataController *_dataController = nil;
     [self.dialogsService getDialogs];
 }
 
+- (void)updateDialogHistory:(NSNumber *)userID {
+    __weak VKDataController *weakSelf = self;
+    NSString *string = [NSString stringWithString:userID.stringValue];
+    void (^completionBlock)(NSArray *) = ^(NSArray *array) {
+        NSLog(@"VKDataController dialogs history completion block: %d", array.count);
+
+        NSString *myIdString = [[NSUserDefaults standardUserDefaults] valueForKey:@"user_id"];
+        for (VKDialogInfo *curInfo in array) {
+            if (![curInfo.userId.stringValue isEqualToString:myIdString]) {
+                [weakSelf.dialogHistory setObject:array forKey:curInfo.userId.stringValue];
+                [weakSelf notifyObservers:[[VKMessageEvent alloc] init]];
+                break;                            
+            }
+        }
+    };
+
+    if (!self.dialogHistoryService)
+        self.dialogHistoryService = [[VKDialogsService alloc] initWithCompletionBlock:completionBlock];
+    [self.dialogHistoryService getDialogHistory:userID];
+}
+
+- (void)sendMessage:(NSString *)messageText to:(NSNumber *)userId {
+    if (!self.messageService) {
+        self.messageService = [[VKSendMessageService alloc] initWithDelegate:self];
+    }
+    [self.messageService sendMessage:userId messageText:messageText];
+}
+
 - (NSArray *)getDialogs {
     NSMutableArray *dialogs = [NSMutableArray new];
     for (VKDialogInfo *curInfo in self.dialogs) {
@@ -96,19 +132,41 @@ static VKDataController *_dataController = nil;
 }
 
 - (NSArray *)getFriends {
-    return self.friends;
+    return [NSArray arrayWithArray:self.friends];
+}
+
+- (VKFriendInfo *)getFriendInfo: (NSNumber *)userID {
+    NSUInteger index = [self.friends indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+        VKFriendInfo *curFriend = (VKFriendInfo *)obj;
+        return [curFriend.userId isEqualToNumber:userID];
+    }];
+    return (index != NSNotFound) ? [self.friends objectAtIndex:index] : nil;
+}
+
+- (NSArray *)getDialogHistory:(NSNumber *)userID {
+    NSArray *ret = [self.dialogHistory objectForKey:userID.stringValue];
+    return (!ret) ? @[] : ret;
+}
+
+- (void)removeDeletedObservers {
+    NSIndexSet *removedObjectsIndexes = [self.observers indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+        VKWeakRefStorage *curStorage = (VKWeakRefStorage *)obj;
+        return !curStorage.reference;
+    }];
+    [self.observers removeObjectsAtIndexes:removedObjectsIndexes];
 }
 
 - (void)notifyObservers:(VKAbstractEvent *)event {
-    for (NSValue *curValue in self.observers) {
-        void *pointer = nil;
-        [curValue getValue:&pointer];
-        if (!pointer)
-            continue;
+    [self removeDeletedObservers];
+    for (VKWeakRefStorage *curStorage in self.observers)
+        [curStorage.reference handleEvent:event];
+}
 
-        __weak id <VKDataObserverProtocol> listener = (__bridge __weak id <VKDataObserverProtocol>)pointer;
-        [listener handleEvent:event];
-    }
+#pragma mark -
+#pragma mark VKSendMessageServiceProtocol
+
+-(void)sendMessageSuccess:(NSNumber*)userId {
+    [self updateDialogHistory:userId];
 }
 
 #pragma mark -
@@ -161,8 +219,7 @@ static VKDataController *_dataController = nil;
 #pragma mark Data Observing Mechanism
 
 - (void)addObserver:(__weak id <VKDataObserverProtocol>)object {
-    // TODO: заменить на CFArrayCreateMutable
-    [self.observers addObject:[NSValue valueWithPointer:(__bridge void *) object]];
+    [self.observers addObject:[VKWeakRefStorage create:object]];
 }
 
 @end

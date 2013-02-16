@@ -11,4 +11,11 @@
 
 
 @interface VKWebViewController : UIViewController <UIWebViewDelegate>
+
+- (id)initWithCompletionBlock:(void (^)())completionBlock;
+
+- (void)loadRequest;
+
++ (void)clearCookies;
+
 @end

@@ -12,6 +12,10 @@
 #import "RestKit.h"
 #import "RKJSONParserJSONKit.h"
 #import "VKConstants.h"
+#import "VKSettingsController.h"
+#import "VKUtils.h"
+#import "VKDialogsController.h"
+#import "VKFriendsController.h"
 
 @implementation VKAppDelegate
 
@@ -24,19 +28,50 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-
-    VKWebViewController *webViewController = [[VKWebViewController alloc] init];
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:webViewController];
-    nav.navigationBarHidden = YES;
-    self.window.rootViewController = nav;
     self.window.backgroundColor = [UIColor blackColor];
 
-    [self configureRestKit];
-    // настройка rest-kit-а
-//    RKClient* client = [RKClient clientWithBaseURL:[NSURL URLWithString:@"https://api.vk.com/method"]];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:[[UIViewController alloc]init]];
+    nav.navigationBarHidden = YES;
+    self.window.rootViewController = nav;
 
+    VKWebViewController *webViewController = [[VKWebViewController alloc] initWithCompletionBlock:^{
+        [VKAppDelegate showTabBar:nav];
+    }];
+    [nav pushViewController:webViewController animated:YES];
+
+    [self configureRestKit];
     [self.window makeKeyAndVisible];
     return YES;
+}
+
++ (void)showTabBar:(UINavigationController *)navController {
+    // Контакты
+    UINavigationController *friendsNav = [[UINavigationController alloc] init];
+    [VKUtils configNavigationBar:friendsNav.navigationBar];
+    [friendsNav pushViewController:[[VKFriendsController alloc] init] animated:NO];
+    friendsNav.tabBarItem =
+            [[UITabBarItem alloc] initWithTitle:@"Друзья" image:[UIImage imageNamed:@"tabbar-contacts-icon.png"] tag:0];
+
+    // Диалоги
+    UINavigationController *dialogsNav = [[UINavigationController alloc] init];
+    [VKUtils configNavigationBar:dialogsNav.navigationBar];
+    [dialogsNav pushViewController:[[VKDialogsController alloc] init] animated:NO];
+    dialogsNav.tabBarItem =
+            [[UITabBarItem alloc] initWithTitle:@"Диалоги" image:[UIImage imageNamed:@"tabbar-messages-icon.png"] tag:1];
+
+    // Профиль
+    UINavigationController *settingsNav = [[UINavigationController alloc] init];
+    [VKUtils configNavigationBar:settingsNav.navigationBar];
+    [settingsNav pushViewController:[[VKSettingsController alloc] init] animated:YES];
+    settingsNav.tabBarItem =
+            [[UITabBarItem alloc] initWithTitle:@"Профиль" image:[UIImage imageNamed:@"tabbar-settings-icon.png"] tag:2];
+
+    // показываем слудеющий экран
+    UITabBarController *mainTabBar = [[UITabBarController alloc] init];
+    [mainTabBar setViewControllers:@[
+            friendsNav, dialogsNav, settingsNav]];
+
+    [navController pushViewController:mainTabBar animated:YES];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
